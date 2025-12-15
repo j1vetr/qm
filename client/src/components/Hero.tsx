@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, MapPin } from "lucide-react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import heroVideo from "@assets/generated_videos/cinematic_swiss_moving_truck_driving_in_alps.mp4";
 import { useLanguage } from "@/lib/i18n";
@@ -93,12 +94,16 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-lg px-8 py-6 rounded-none skew-x-[-10deg]">
-              <span className="skew-x-[10deg]">{dict.hero.start_moving}</span>
-            </Button>
-            <Button size="lg" variant="outline" className="border-white/20 hover:bg-white/10 text-white text-lg px-8 py-6 rounded-none skew-x-[-10deg]">
-              <span className="skew-x-[10deg]">{dict.hero.our_services}</span>
-            </Button>
+            <Link href="/contact">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-lg px-8 py-6 rounded-none skew-x-[-10deg]">
+                <span className="skew-x-[10deg]">{dict.hero.start_moving}</span>
+              </Button>
+            </Link>
+            <Link href="/services">
+              <Button size="lg" variant="outline" className="border-white/20 hover:bg-white/10 text-white text-lg px-8 py-6 rounded-none skew-x-[-10deg]">
+                <span className="skew-x-[10deg]">{dict.hero.our_services}</span>
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </div>
