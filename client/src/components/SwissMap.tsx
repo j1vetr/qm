@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Navigation } from "lucide-react";
 
 // More accurate relative coordinates for Swiss cities
@@ -121,16 +121,14 @@ export default function SwissMap() {
                   <path d="M 40 70 Q 55 60 70 70" fill="none" />
               </motion.g>
               
-              {/* Removed grid pattern as requested */}
-
-              {/* Connections with Flowing Animation */}
+              {/* Connections with Flowing Dash Animation */}
               {connections.map(([startIdx, endIdx], i) => {
                  const start = cities[startIdx];
                  const end = cities[endIdx];
                  
                  return (
                    <g key={`conn-${i}`}>
-                     {/* Base Line */}
+                     {/* Static Background Line */}
                      <line
                         x1={start.x}
                         y1={start.y}
@@ -138,28 +136,23 @@ export default function SwissMap() {
                         y2={end.y}
                         stroke="currentColor"
                         strokeWidth="0.1"
-                        className="text-primary/30"
+                        className="text-white/10"
                      />
                      
-                     {/* Flowing Particle */}
-                     <circle r="0.6" fill="hsl(355 100% 55%)">
-                       <animateMotion 
-                         dur={`${2 + Math.random()}s`} 
-                         repeatCount="indefinite"
-                         path={`M${start.x},${start.y} L${end.x},${end.y}`}
-                       />
-                     </circle>
-                     
-                     {/* Reverse Flowing Particle (occasional) */}
-                     {i % 2 === 0 && (
-                       <circle r="0.4" fill="hsl(355 100% 55%)" opacity="0.7">
-                         <animateMotion 
-                           dur={`${3 + Math.random()}s`} 
-                           repeatCount="indefinite"
-                           path={`M${end.x},${end.y} L${start.x},${start.y}`}
-                         />
-                       </circle>
-                     )}
+                     {/* Animated Flowing Line */}
+                     <motion.line
+                        x1={start.x}
+                        y1={start.y}
+                        x2={end.x}
+                        y2={end.y}
+                        stroke="hsl(355 100% 55%)"
+                        strokeWidth="0.15"
+                        strokeDasharray="1 1"
+                        initial={{ strokeDashoffset: 0 }}
+                        animate={{ strokeDashoffset: -20 }}
+                        transition={{ duration: 2 + (i % 3), repeat: Infinity, ease: "linear" }}
+                        className="opacity-60"
+                     />
                    </g>
                  )
               })}

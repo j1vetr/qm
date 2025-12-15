@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroBg from "@assets/generated_images/cinematic_swiss_moving_truck_at_twilight.png";
+import heroVideo from "@assets/generated_videos/cinematic_swiss_moving_truck_driving_in_alps.mp4";
 
 export default function Hero() {
   const { scrollY } = useScroll();
@@ -17,9 +17,12 @@ export default function Hero() {
       >
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent z-10" />
         <div className="absolute inset-0 bg-black/40 z-10" />
-        <img 
-          src={heroBg} 
-          alt="Swiss Moving Truck" 
+        <video 
+          src={heroVideo} 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
           className="w-full h-full object-cover"
         />
       </motion.div>
