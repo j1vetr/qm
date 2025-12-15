@@ -1,5 +1,5 @@
 import { useLanguage } from "@/lib/i18n";
-import logo from "@assets/qm_logo_1765811309290.png";
+import logo from "@assets/Design_1765834372701.png";
 import { Link } from "wouter";
 import { Facebook, Instagram, Linkedin, Twitter, Heart } from "lucide-react";
 
@@ -21,7 +21,7 @@ export default function Footer() {
                 <img 
                   src={logo} 
                   alt="QuickMove Logo" 
-                  className="h-16 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300" 
+                  className="h-24 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300" 
                 />
               </a>
             </Link>
