@@ -86,6 +86,11 @@ export const translations = {
           title: "Eco-Friendly Disposal",
           desc: "Don't worry about the trash. We handle the responsible disposal and recycling of unwanted items, furniture, and renovation debris.",
           features: ["Furniture Disposal", "Recycling Services", "Debris Removal"]
+        },
+        assembly: {
+          title: "Furniture Assembly",
+          desc: "Professional disassembly and reassembly of all furniture types, from complex modular systems to antiques, ensuring structural integrity.",
+          features: ["IKEA & Designer Assembly", "Wall Mounting Service", "Complex Systems Setup"]
         }
       }
     },
@@ -402,6 +407,11 @@ export const translations = {
           title: "Umweltfreundliche Entsorgung",
           desc: "Machen Sie sich keine Sorgen um den Müll. Wir kümmern uns um die verantwortungsvolle Entsorgung und das Recycling von unerwünschten Gegenständen, Möbeln und Renovierungsschutt.",
           features: ["Möbelentsorgung", "Recycling-Service", "Schuttentfernung"]
+        },
+        assembly: {
+          title: "Möbelmontage",
+          desc: "Professionelle Demontage und Wiedermontage aller Möbelarten, von komplexen Modulsystemen bis zu Antiquitäten, unter Gewährleistung der strukturellen Integrität.",
+          features: ["IKEA & Designer Montage", "Wandmontage-Service", "Aufbau komplexer Systeme"]
         }
       }
     },
@@ -718,6 +728,11 @@ export const translations = {
           title: "Élimination Écologique",
           desc: "Ne vous inquiétez pas pour les déchets. Nous gérons l'élimination responsable et le recyclage des objets indésirables, des meubles et des débris de rénovation.",
           features: ["Élimination Meubles", "Services Recyclage", "Enlèvement Débris"]
+        },
+        assembly: {
+          title: "Montage de Meubles",
+          desc: "Démontage et remontage professionnel de tous types de meubles, des systèmes modulaires complexes aux antiquités, garantissant l'intégrité structurelle.",
+          features: ["Montage IKEA & Designer", "Service de fixation murale", "Installation de systèmes complexes"]
         }
       }
     },
