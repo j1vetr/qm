@@ -18,7 +18,7 @@ export default function Home() {
         <div className="max-w-4xl">
            <h2 className="text-4xl md:text-6xl font-display font-bold uppercase italic mb-8 leading-tight">
              Relocation <br/>
-             <span className="text-stroke text-transparent">Reimagined</span>
+             <span className="text-primary">Reimagined</span>
            </h2>
            <p className="text-xl text-muted-foreground mb-8">
              We are not just a moving company. We are your logistical partners. 

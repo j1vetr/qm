@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Navigation } from "lucide-react";
+import { Navigation } from "lucide-react";
 
 // More accurate relative coordinates for Swiss cities
 const cities = [
@@ -19,6 +19,23 @@ const cities = [
 export default function SwissMap() {
   const [activeCity, setActiveCity] = useState<number | null>(null);
 
+  // Define specific connections to create a logical network flow
+  const connections = [
+    [0, 3], // Zurich - Basel
+    [0, 2], // Zurich - Bern
+    [0, 5], // Zurich - St Gallen
+    [0, 6], // Zurich - Lucerne
+    [0, 8], // Zurich - Chur
+    [2, 1], // Bern - Geneva
+    [2, 3], // Bern - Basel
+    [2, 7], // Bern - Lausanne
+    [1, 7], // Geneva - Lausanne
+    [1, 9], // Geneva - Sion
+    [9, 4], // Sion - Lugano (simulated route)
+    [6, 4], // Lucerne - Lugano
+    [8, 4], // Chur - Lugano
+  ];
+
   return (
     <section className="py-24 bg-card relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-background to-background" />
@@ -35,7 +52,7 @@ export default function SwissMap() {
               <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-4">Network Coverage</span>
               <h2 className="text-4xl md:text-6xl font-display font-bold uppercase italic mb-6">
                 We Cover <br />
-                <span className="text-stroke text-transparent">Every Canton</span>
+                <span className="text-primary">Every Canton</span>
               </h2>
               <p className="text-muted-foreground mb-8">
                 Our logistics network spans the entire nation. From the busy streets of Zürich to the quiet valleys of Ticino, we are there.
@@ -104,40 +121,48 @@ export default function SwissMap() {
                   <path d="M 40 70 Q 55 60 70 70" fill="none" />
               </motion.g>
               
-              {/* Grid Lines inside map for tech feel */}
-              <pattern id="grid" width="2" height="2" patternUnits="userSpaceOnUse">
-                <path d="M 2 0 L 0 0 0 2" fill="none" stroke="currentColor" strokeWidth="0.05" className="text-white/5" />
-              </pattern>
-              <path
-                d="M 15 75 L 20 65 L 18 55 L 25 50 L 30 45 L 35 35 L 45 15 L 55 12 L 65 15 L 75 15 L 85 20 L 92 30 L 95 50 L 90 60 L 85 65 L 75 75 L 75 85 L 65 88 L 50 85 L 40 80 L 30 75 L 20 80 L 15 75 Z"
-                fill="url(#grid)"
-                className="opacity-50"
-              />
+              {/* Removed grid pattern as requested */}
 
-              {/* Connections */}
-              {cities.map((city, i) => (
-                 cities.map((target, j) => {
-                   if (i >= j) return null; // Avoid duplicates
-                   // Only draw some connections to avoid clutter
-                   if (Math.random() > 0.8) return null;
-                   
-                   return (
-                     <motion.line
-                        key={`${i}-${j}`}
-                        x1={city.x}
-                        y1={city.y}
-                        x2={target.x}
-                        y2={target.y}
+              {/* Connections with Flowing Animation */}
+              {connections.map(([startIdx, endIdx], i) => {
+                 const start = cities[startIdx];
+                 const end = cities[endIdx];
+                 
+                 return (
+                   <g key={`conn-${i}`}>
+                     {/* Base Line */}
+                     <line
+                        x1={start.x}
+                        y1={start.y}
+                        x2={end.x}
+                        y2={end.y}
                         stroke="currentColor"
                         strokeWidth="0.1"
-                        className="text-primary/20"
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        whileInView={{ pathLength: 1, opacity: 1 }}
-                        transition={{ duration: 1.5, delay: 0.5 + (i * 0.1) }}
+                        className="text-primary/30"
                      />
-                   )
-                 })
-              ))}
+                     
+                     {/* Flowing Particle */}
+                     <circle r="0.6" fill="hsl(355 100% 55%)">
+                       <animateMotion 
+                         dur={`${2 + Math.random()}s`} 
+                         repeatCount="indefinite"
+                         path={`M${start.x},${start.y} L${end.x},${end.y}`}
+                       />
+                     </circle>
+                     
+                     {/* Reverse Flowing Particle (occasional) */}
+                     {i % 2 === 0 && (
+                       <circle r="0.4" fill="hsl(355 100% 55%)" opacity="0.7">
+                         <animateMotion 
+                           dur={`${3 + Math.random()}s`} 
+                           repeatCount="indefinite"
+                           path={`M${end.x},${end.y} L${start.x},${start.y}`}
+                         />
+                       </circle>
+                     )}
+                   </g>
+                 )
+              })}
 
               {/* Cities */}
               {cities.map((city, index) => (
