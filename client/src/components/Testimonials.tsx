@@ -51,16 +51,16 @@ export default function Testimonials() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative w-full max-w-[100vw] overflow-hidden md:overflow-visible"
           >
             <Carousel className="w-full">
               <CarouselContent>
                 {testimonials.map((t, i) => (
                   <CarouselItem key={i}>
-                    <div className="bg-card border border-white/10 p-8 md:p-12 relative overflow-hidden group">
+                    <div className="bg-card border border-white/10 p-6 md:p-12 relative overflow-hidden group h-full">
                       <div className="absolute top-0 right-0 p-8 opacity-10 font-display font-black text-9xl leading-none select-none">
                         "
                       </div>
