@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, ArrowRight, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import logo from "@assets/qm_logo_1765811309290.png";
+import logo from "@assets/Design_1765834372701.png";
 import { useLanguage } from "@/lib/i18n";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
@@ -69,7 +69,7 @@ export default function Navbar() {
                     height="calc(100% - 4px)" 
                     rx="10" 
                     fill="none"
-                    stroke="hsl(355 100% 55%)"
+                    stroke="hsl(215 100% 50%)"
                     strokeWidth="2"
                     strokeDasharray="12 8"
                     initial={{ strokeDashoffset: 0 }}
