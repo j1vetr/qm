@@ -228,6 +228,83 @@ export const translations = {
       copyright: "© 2025 QuickMove All Rights Reserved.",
       privacy: "Privacy Policy",
       terms: "Terms of Service"
+    },
+    privacy: {
+      title: "Privacy",
+      title_span: "Policy",
+      last_updated: "Last updated: January 1, 2025",
+      intro: {
+        title: "1. Introduction",
+        text: "At QuickMove AG (\"we\", \"our\", or \"us\"), we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website or use our relocation services and tell you about your privacy rights and how the law protects you."
+      },
+      data: {
+        title: "2. Data We Collect",
+        text: "We may collect, use, store and transfer different kinds of personal data about you which we have grouped together follows:",
+        items: [
+          { title: "Identity Data:", text: "includes first name, last name, username or similar identifier, title." },
+          { title: "Contact Data:", text: "includes billing address, delivery address, email address and telephone numbers." },
+          { title: "Relocation Data:", text: "includes inventory lists, floor plans, photos of items to be moved, and specific access details for properties." },
+          { title: "Financial Data:", text: "includes bank account and payment card details." }
+        ]
+      },
+      usage: {
+        title: "3. How We Use Your Data",
+        text: "We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:",
+        items: [
+          "To perform the contract we are about to enter into or have entered into with you (providing moving services).",
+          "To manage our relationship with you which will include notifying you about changes to our terms or privacy policy.",
+          "To coordinate with third-party partners (e.g., external lift operators, customs agents) necessary for your move."
+        ]
+      },
+      security: {
+        title: "4. Data Security",
+        text: "We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used or accessed in an unauthorized way, altered or disclosed. In addition, we limit access to your personal data to those employees, agents, contractors and other third parties who have a business need to know."
+      },
+      contact: {
+        title: "5. Contact Details",
+        text: "If you have any questions about this privacy policy or our privacy practices, please contact us at:",
+        address: "QuickMove AG, Bahnhofstrasse 1, 8001 Zürich, Switzerland",
+        email: "Email: privacy@quickmove.ch"
+      }
+    },
+    terms: {
+      title: "Terms of",
+      title_span: "Service",
+      effective_date: "Effective Date: January 1, 2025",
+      agreement: {
+        title: "1. Agreement to Terms",
+        text: "These Terms of Service constitute a legally binding agreement made between you, whether personally or on behalf of an entity (\"you\") and QuickMove AG (\"we,\" \"us\" or \"our\"), concerning your access to and use of our relocation services."
+      },
+      services: {
+        title: "2. Services",
+        text1: "QuickMove AG provides premium relocation, packing, transport, and storage services. The specific scope of services for your move will be detailed in your personalized Quote/Proposal.",
+        text2: "We reserve the right to refuse service if the conditions at the origin or destination are unsafe for our staff or if the inventory significantly differs from what was declared."
+      },
+      obligations: {
+        title: "3. Customer Obligations",
+        text: "You agree to:",
+        items: [
+          "Provide accurate information regarding the volume of goods and access conditions (elevator availability, parking distance, etc.).",
+          "Secure necessary parking permits unless explicitly included in our service package.",
+          "Ensure all personal valuables (jewelry, cash, important documents) are removed or secured prior to our arrival.",
+          "Be present or have an authorized representative present during the loading and unloading process."
+        ]
+      },
+      liability: {
+        title: "4. Insurance & Liability",
+        standard_title: "Standard Liability:",
+        standard_text: "Our liability for loss or damage is limited by Swiss law and industry standards unless enhanced coverage is purchased.",
+        premium_title: "Premium Coverage:",
+        premium_text: "We offer full-value protection plans. Claims for damage must be reported within 3 days of delivery. We are not liable for the contents of boxes packed by the owner (PBO) unless there is visible external damage to the box caused by our handling."
+      },
+      cancellation: {
+        title: "5. Cancellation Policy",
+        text: "Cancellations made more than 14 days before the scheduled move date are fully refundable. Cancellations within 7-14 days are subject to a 50% fee. Cancellations within 7 days are non-refundable."
+      },
+      law: {
+        title: "6. Governing Law",
+        text: "These Terms shall be governed by and defined following the laws of Switzerland. QuickMove AG and yourself irrevocably consent that the courts of Zürich shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these terms."
+      }
     }
   },
   de: {
@@ -457,6 +534,83 @@ export const translations = {
       copyright: "© 2025 QuickMove All Rights Reserved.",
       privacy: "Datenschutzerklärung",
       terms: "AGB"
+    },
+    privacy: {
+      title: "Datenschutz",
+      title_span: "erklärung",
+      last_updated: "Zuletzt aktualisiert: 1. Januar 2025",
+      intro: {
+        title: "1. Einführung",
+        text: "Bei QuickMove AG (\"wir\", \"uns\" oder \"unser\") respektieren wir Ihre Privatsphäre und verpflichten uns zum Schutz Ihrer persönlichen Daten. Diese Datenschutzerklärung informiert Sie darüber, wie wir Ihre persönlichen Daten verarbeiten, wenn Sie unsere Website besuchen oder unsere Umzugsdienstleistungen nutzen, und klärt Sie über Ihre Datenschutzrechte und den gesetzlichen Schutz auf."
+      },
+      data: {
+        title: "2. Daten, die wir sammeln",
+        text: "Wir können verschiedene Arten von persönlichen Daten über Sie sammeln, verwenden, speichern und übertragen, die wir wie folgt gruppiert haben:",
+        items: [
+          { title: "Identitätsdaten:", text: "beinhalten Vorname, Nachname, Benutzername oder ähnliche Kennungen, Titel." },
+          { title: "Kontaktdaten:", text: "beinhalten Rechnungsadresse, Lieferadresse, E-Mail-Adresse und Telefonnummern." },
+          { title: "Umzugsdaten:", text: "beinhalten Inventarlisten, Grundrisse, Fotos der zu transportierenden Gegenstände und spezifische Zugangsinformationen für Immobilien." },
+          { title: "Finanzdaten:", text: "beinhalten Bankkonto- und Zahlungskartendaten." }
+        ]
+      },
+      usage: {
+        title: "3. Wie wir Ihre Daten verwenden",
+        text: "Wir werden Ihre persönlichen Daten nur verwenden, wenn das Gesetz es uns erlaubt. Am häufigsten verwenden wir Ihre persönlichen Daten in den folgenden Umständen:",
+        items: [
+          "Um den Vertrag zu erfüllen, den wir mit Ihnen eingehen werden oder eingegangen sind (Bereitstellung von Umzugsdienstleistungen).",
+          "Um unsere Beziehung zu Ihnen zu verwalten, was die Benachrichtigung über Änderungen unserer Bedingungen oder Datenschutzrichtlinien beinhaltet.",
+          "Um uns mit Drittpartnern (z. B. externen Liftbetreibern, Zollagenten) zu koordinieren, die für Ihren Umzug notwendig sind."
+        ]
+      },
+      security: {
+        title: "4. Datensicherheit",
+        text: "Wir haben angemessene Sicherheitsvorkehrungen getroffen, um zu verhindern, dass Ihre persönlichen Daten versehentlich verloren gehen, verwendet oder auf unbefugte Weise abgerufen, verändert oder offengelegt werden. Darüber hinaus beschränken wir den Zugriff auf Ihre persönlichen Daten auf Mitarbeiter, Vertreter, Auftragnehmer und andere Dritte, die dies aus geschäftlichen Gründen wissen müssen."
+      },
+      contact: {
+        title: "5. Kontaktdaten",
+        text: "Wenn Sie Fragen zu dieser Datenschutzerklärung oder unseren Datenschutzpraktiken haben, kontaktieren Sie uns bitte unter:",
+        address: "QuickMove AG, Bahnhofstrasse 1, 8001 Zürich, Schweiz",
+        email: "E-Mail: privacy@quickmove.ch"
+      }
+    },
+    terms: {
+      title: "Allgemeine",
+      title_span: "Geschäftsbedingungen",
+      effective_date: "Gültig ab: 1. Januar 2025",
+      agreement: {
+        title: "1. Zustimmung zu den Bedingungen",
+        text: "Diese Nutzungsbedingungen stellen eine rechtsverbindliche Vereinbarung zwischen Ihnen, ob persönlich oder im Namen einer juristischen Person (\"Sie\") und der QuickMove AG (\"wir\", \"uns\" oder \"unser\") dar, die Ihren Zugang zu und Ihre Nutzung unserer Umzugsdienstleistungen betrifft."
+      },
+      services: {
+        title: "2. Dienstleistungen",
+        text1: "QuickMove AG bietet Premium-Umzugs-, Verpackungs-, Transport- und Lagerdienstleistungen an. Der spezifische Umfang der Dienstleistungen für Ihren Umzug wird in Ihrem persönlichen Angebot/Vorschlag detailliert beschrieben.",
+        text2: "Wir behalten uns das Recht vor, den Service zu verweigern, wenn die Bedingungen am Start- oder Zielort für unser Personal unsicher sind oder wenn das Inventar erheblich von dem abweicht, was deklariert wurde."
+      },
+      obligations: {
+        title: "3. Kundenpflichten",
+        text: "Sie stimmen zu:",
+        items: [
+          "Genaue Informationen bezüglich des Volumens der Waren und der Zugangsbedingungen (Verfügbarkeit von Aufzügen, Parkdistanz usw.) bereitzustellen.",
+          "Notwendige Parkgenehmigungen zu sichern, sofern nicht ausdrücklich in unserem Servicepaket enthalten.",
+          "Sicherzustellen, dass alle persönlichen Wertsachen (Schmuck, Bargeld, wichtige Dokumente) vor unserer Ankunft entfernt oder gesichert sind.",
+          "Während des Be- und Entladevorgangs anwesend zu sein oder einen bevollmächtigten Vertreter anwesend zu haben."
+        ]
+      },
+      liability: {
+        title: "4. Versicherung & Haftung",
+        standard_title: "Standardhaftung:",
+        standard_text: "Unsere Haftung für Verlust oder Beschädigung ist durch Schweizer Recht und Industriestandards begrenzt, sofern keine erweiterte Deckung erworben wird.",
+        premium_title: "Premium-Deckung:",
+        premium_text: "Wir bieten Vollwertschutzpläne an. Schadensansprüche müssen innerhalb von 3 Tagen nach Lieferung gemeldet werden. Wir haften nicht für den Inhalt von Kartons, die vom Eigentümer gepackt wurden (PBO), es sei denn, es liegt ein sichtbarer äußerer Schaden am Karton vor, der durch unsere Handhabung verursacht wurde."
+      },
+      cancellation: {
+        title: "5. Stornierungsbedingungen",
+        text: "Stornierungen, die mehr als 14 Tage vor dem geplanten Umzugsdatum erfolgen, sind vollständig erstattungsfähig. Stornierungen innerhalb von 7-14 Tagen unterliegen einer Gebühr von 50%. Stornierungen innerhalb von 7 Tagen sind nicht erstattungsfähig."
+      },
+      law: {
+        title: "6. Anwendbares Recht",
+        text: "Diese Bedingungen unterliegen den Gesetzen der Schweiz und werden nach diesen ausgelegt. QuickMove AG und Sie stimmen unwiderruflich zu, dass die Gerichte von Zürich die ausschließliche Zuständigkeit für die Beilegung von Streitigkeiten haben, die im Zusammenhang mit diesen Bedingungen entstehen können."
+      }
     }
   },
   fr: {
@@ -686,6 +840,83 @@ export const translations = {
       copyright: "© 2025 QuickMove All Rights Reserved.",
       privacy: "Politique de Confidentialité",
       terms: "CGV"
+    },
+    privacy: {
+      title: "Politique de",
+      title_span: "Confidentialité",
+      last_updated: "Dernière mise à jour : 1er janvier 2025",
+      intro: {
+        title: "1. Introduction",
+        text: "Chez QuickMove AG (« nous », « notre » ou « nos »), nous respectons votre vie privée et nous nous engageons à protéger vos données personnelles. Cette politique de confidentialité vous informera sur la manière dont nous traitons vos données personnelles lorsque vous visitez notre site web ou utilisez nos services de déménagement et vous informera de vos droits en matière de confidentialité et de la manière dont la loi vous protège."
+      },
+      data: {
+        title: "2. Données que nous collectons",
+        text: "Nous pouvons collecter, utiliser, stocker et transférer différents types de données personnelles vous concernant, que nous avons regroupées comme suit :",
+        items: [
+          { title: "Données d'identité :", text: "comprennent le prénom, le nom, le nom d'utilisateur ou un identifiant similaire, le titre." },
+          { title: "Données de contact :", text: "comprennent l'adresse de facturation, l'adresse de livraison, l'adresse e-mail et les numéros de téléphone." },
+          { title: "Données de déménagement :", text: "comprennent les listes d'inventaire, les plans d'étage, les photos des articles à déménager et les détails d'accès spécifiques pour les propriétés." },
+          { title: "Données financières :", text: "comprennent les coordonnées bancaires et de carte de paiement." }
+        ]
+      },
+      usage: {
+        title: "3. Comment nous utilisons vos données",
+        text: "Nous n'utiliserons vos données personnelles que lorsque la loi nous y autorise. Le plus souvent, nous utiliserons vos données personnelles dans les circonstances suivantes :",
+        items: [
+          "Pour exécuter le contrat que nous sommes sur le point de conclure ou que nous avons conclu avec vous (fourniture de services de déménagement).",
+          "Pour gérer notre relation avec vous, ce qui inclura de vous informer des modifications apportées à nos conditions ou à notre politique de confidentialité.",
+          "Pour coordonner avec des partenaires tiers (par exemple, opérateurs de monte-meubles externes, agents en douane) nécessaires à votre déménagement."
+        ]
+      },
+      security: {
+        title: "4. Sécurité des données",
+        text: "Nous avons mis en place des mesures de sécurité appropriées pour empêcher que vos données personnelles ne soient accidentellement perdues, utilisées ou consultées de manière non autorisée, modifiées ou divulguées. De plus, nous limitons l'accès à vos données personnelles aux employés, agents, entrepreneurs et autres tiers qui ont besoin de les connaître pour des raisons professionnelles."
+      },
+      contact: {
+        title: "5. Coordonnées",
+        text: "Si vous avez des questions sur cette politique de confidentialité ou nos pratiques en matière de confidentialité, veuillez nous contacter à :",
+        address: "QuickMove AG, Bahnhofstrasse 1, 8001 Zurich, Suisse",
+        email: "Email : privacy@quickmove.ch"
+      }
+    },
+    terms: {
+      title: "Conditions",
+      title_span: "Générales",
+      effective_date: "Date d'effet : 1er janvier 2025",
+      agreement: {
+        title: "1. Accord aux conditions",
+        text: "Ces Conditions Générales constituent un accord juridiquement contraignant conclu entre vous, que ce soit personnellement ou au nom d'une entité (« vous ») et QuickMove AG (« nous », « notre » ou « nos »), concernant votre accès et votre utilisation de nos services de déménagement."
+      },
+      services: {
+        title: "2. Services",
+        text1: "QuickMove AG fournit des services de déménagement, d'emballage, de transport et de stockage haut de gamme. L'étendue spécifique des services pour votre déménagement sera détaillée dans votre Devis/Proposition personnalisé.",
+        text2: "Nous nous réservons le droit de refuser le service si les conditions au départ ou à l'arrivée sont dangereuses pour notre personnel ou si l'inventaire diffère considérablement de ce qui a été déclaré."
+      },
+      obligations: {
+        title: "3. Obligations du client",
+        text: "Vous acceptez de :",
+        items: [
+          "Fournir des informations précises concernant le volume des marchandises et les conditions d'accès (disponibilité de l'ascenseur, distance de stationnement, etc.).",
+          "Obtenir les permis de stationnement nécessaires, sauf s'ils sont explicitement inclus dans notre forfait de services.",
+          "S'assurer que tous les objets de valeur personnels (bijoux, espèces, documents importants) sont retirés ou sécurisés avant notre arrivée.",
+          "Être présent ou avoir un représentant autorisé présent pendant le processus de chargement et de déchargement."
+        ]
+      },
+      liability: {
+        title: "4. Assurance et Responsabilité",
+        standard_title: "Responsabilité Standard :",
+        standard_text: "Notre responsabilité pour perte ou dommage est limitée par la loi suisse et les normes de l'industrie, sauf si une couverture améliorée est souscrite.",
+        premium_title: "Couverture Premium :",
+        premium_text: "Nous proposons des plans de protection à valeur totale. Les réclamations pour dommages doivent être signalées dans les 3 jours suivant la livraison. Nous ne sommes pas responsables du contenu des cartons emballés par le propriétaire (PBO) sauf s'il y a des dommages externes visibles sur le carton causés par notre manipulation."
+      },
+      cancellation: {
+        title: "5. Politique d'annulation",
+        text: "Les annulations effectuées plus de 14 jours avant la date prévue du déménagement sont entièrement remboursables. Les annulations dans les 7 à 14 jours sont soumises à des frais de 50 %. Les annulations dans les 7 jours ne sont pas remboursables."
+      },
+      law: {
+        title: "6. Droit applicable",
+        text: "Ces conditions sont régies et définies conformément aux lois de la Suisse. QuickMove AG et vous-même consentez irrévocablement à ce que les tribunaux de Zurich aient la compétence exclusive pour résoudre tout litige pouvant survenir en relation avec ces conditions."
+      }
     }
   }
 };

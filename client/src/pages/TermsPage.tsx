@@ -6,6 +6,11 @@ import { useLanguage } from "@/lib/i18n";
 export default function TermsPage() {
   const { dict } = useLanguage();
 
+  const getObligationItems = () => {
+    const items = dict.terms.obligations.items;
+    return Array.isArray(items) ? items : [];
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
@@ -17,10 +22,10 @@ export default function TermsPage() {
           className="mb-12"
         >
           <h1 className="text-4xl md:text-6xl font-display font-bold uppercase italic mb-6">
-            Terms of <span className="text-primary">Service</span>
+            {dict.terms.title} <span className="text-primary">{dict.terms.title_span}</span>
           </h1>
           <p className="text-muted-foreground text-lg">
-            Effective Date: January 1, 2025
+            {dict.terms.effective_date}
           </p>
         </motion.div>
 
@@ -31,56 +36,55 @@ export default function TermsPage() {
           className="prose prose-invert max-w-none space-y-12"
         >
           <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">1. Agreement to Terms</h2>
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.terms.agreement.title}</h2>
             <p className="text-muted-foreground leading-relaxed">
-              These Terms of Service constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you") and QuickMove AG ("we," "us" or "our"), concerning your access to and use of our relocation services.
+              {dict.terms.agreement.text}
             </p>
           </section>
 
           <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">2. Services</h2>
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.terms.services.title}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              QuickMove AG provides premium relocation, packing, transport, and storage services. The specific scope of services for your move will be detailed in your personalized Quote/Proposal.
+              {dict.terms.services.text1}
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              We reserve the right to refuse service if the conditions at the origin or destination are unsafe for our staff or if the inventory significantly differs from what was declared.
+              {dict.terms.services.text2}
             </p>
           </section>
 
           <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">3. Customer Obligations</h2>
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.terms.obligations.title}</h2>
             <p className="text-muted-foreground leading-relaxed">
-              You agree to:
+              {dict.terms.obligations.text}
             </p>
             <ul className="list-disc pl-6 space-y-2 text-muted-foreground mt-4">
-              <li>Provide accurate information regarding the volume of goods and access conditions (elevator availability, parking distance, etc.).</li>
-              <li>Secure necessary parking permits unless explicitly included in our service package.</li>
-              <li>Ensure all personal valuables (jewelry, cash, important documents) are removed or secured prior to our arrival.</li>
-              <li>Be present or have an authorized representative present during the loading and unloading process.</li>
+              {getObligationItems().map((item: string, index: number) => (
+                <li key={index}>{item}</li>
+              ))}
             </ul>
           </section>
 
           <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">4. Insurance & Liability</h2>
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.terms.liability.title}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              <strong>Standard Liability:</strong> Our liability for loss or damage is limited by Swiss law and industry standards unless enhanced coverage is purchased.
+              <strong>{dict.terms.liability.standard_title}</strong> {dict.terms.liability.standard_text}
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              <strong>Premium Coverage:</strong> We offer full-value protection plans. Claims for damage must be reported within 3 days of delivery. We are not liable for the contents of boxes packed by the owner (PBO) unless there is visible external damage to the box caused by our handling.
-            </p>
-          </section>
-
-          <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">5. Cancellation Policy</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Cancellations made more than 14 days before the scheduled move date are fully refundable. Cancellations within 7-14 days are subject to a 50% fee. Cancellations within 7 days are non-refundable.
+              <strong>{dict.terms.liability.premium_title}</strong> {dict.terms.liability.premium_text}
             </p>
           </section>
 
           <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">6. Governing Law</h2>
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.terms.cancellation.title}</h2>
             <p className="text-muted-foreground leading-relaxed">
-              These Terms shall be governed by and defined following the laws of Switzerland. QuickMove AG and yourself irrevocably consent that the courts of Zürich shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these terms.
+              {dict.terms.cancellation.text}
+            </p>
+          </section>
+
+          <section className="p-8 border border-white/10 bg-card rounded-xl">
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.terms.law.title}</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              {dict.terms.law.text}
             </p>
           </section>
         </motion.div>
