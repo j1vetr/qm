@@ -133,7 +133,7 @@ export default function ServicesPage() {
               {dict.services.cta_desc}
             </p>
             <Link href="/contact">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-xl px-12 py-8 rounded-none skew-x-[-10deg] font-bold shadow-[0_0_30px_-5px_hsl(355,100%,55%)] hover:shadow-[0_0_50px_-5px_hsl(355,100%,55%)] transition-all duration-300">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-xl px-12 py-8 rounded-none skew-x-[-10deg] font-bold shadow-[0_0_30px_-5px_hsl(215,100%,50%)] hover:shadow-[0_0_50px_-5px_hsl(215,100%,50%)] transition-all duration-300">
                 <span className="skew-x-[10deg] flex items-center gap-3">
                   {dict.services.cta_button} <ArrowRight className="w-6 h-6" />
                 </span>

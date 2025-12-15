@@ -74,7 +74,7 @@ export default function ProcessPage() {
                     whileInView={{ scale: 1, rotate: 0 }}
                     viewport={{ once: true }}
                     transition={{ type: "spring", duration: 1 }}
-                    className="w-4 h-4 rounded-none bg-background border-2 border-primary rotate-45 shadow-[0_0_20px_hsl(355,100%,55%)]"
+                    className="w-4 h-4 rounded-none bg-background border-2 border-primary rotate-45 shadow-[0_0_20px_hsl(215,100%,50%)]"
                   />
                   {/* Pulse Effect */}
                   <motion.div 

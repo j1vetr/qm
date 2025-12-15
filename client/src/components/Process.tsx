@@ -58,7 +58,7 @@ export default function Process() {
                 className="relative group"
               >
                 <div className="mb-8 relative flex justify-center md:block">
-                  <div className="w-16 h-16 bg-background border border-white/20 rounded-full flex items-center justify-center relative z-10 group-hover:border-primary group-hover:shadow-[0_0_30px_-5px_hsl(355,100%,55%)] transition-all duration-500">
+                  <div className="w-16 h-16 bg-background border border-white/20 rounded-full flex items-center justify-center relative z-10 group-hover:border-primary group-hover:shadow-[0_0_30px_-5px_hsl(215,100%,50%)] transition-all duration-500">
                     <span className="text-xl font-bold font-display">{step.num}</span>
                   </div>
                 </div>
