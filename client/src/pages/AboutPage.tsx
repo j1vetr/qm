@@ -7,7 +7,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <div className="pt-32 pb-24 container mx-auto px-6">
+      <div className="pt-48 pb-24 container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
