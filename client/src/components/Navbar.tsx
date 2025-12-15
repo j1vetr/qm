@@ -141,17 +141,24 @@ export default function Navbar() {
           {/* Language Switcher */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="text-white hover:text-primary font-bold">
-                {language.toUpperCase()} <Globe className="ml-2 w-4 h-4" />
-              </Button>
+               <Button variant="ghost" className="text-white hover:text-primary font-bold flex items-center gap-3 px-3">
+                 <div className="scale-125 flex items-center">
+                    {getFlag(language)}
+                 </div>
+                 <span className="opacity-50 font-light">|</span>
+                 {language.toUpperCase()}
+               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-card border-white/10">
+            <DropdownMenuContent align="end" className="bg-black/90 backdrop-blur-xl border-white/10 min-w-[140px] flex flex-col items-center p-2">
               {langs.map((l) => (
                 <DropdownMenuItem 
                   key={l.code} 
                   onClick={() => setLanguage(l.code as any)}
-                  className={`cursor-pointer ${language === l.code ? "text-primary font-bold" : "text-white"}`}
+                  className={`cursor-pointer w-full justify-center flex items-center gap-3 py-2 text-base ${language === l.code ? "text-primary font-bold bg-white/5" : "text-white hover:bg-white/10"}`}
                 >
+                  <div className="scale-125 flex items-center">
+                     {getFlag(l.code)}
+                  </div>
                   {l.label}
                 </DropdownMenuItem>
               ))}
