@@ -40,15 +40,23 @@ export default function Hero() {
             <span className="text-primary font-bold tracking-[0.2em] uppercase">Switzerland's Premium Relocation</span>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-6xl md:text-8xl font-black font-display leading-[0.9] italic mb-8"
-          >
-            MOVING <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">FORWARD</span>
-          </motion.h1>
+          <h1 className="text-6xl md:text-8xl font-black font-display leading-[0.9] italic mb-8">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              MOVING
+            </motion.div> 
+            <motion.span 
+              className="inline-block pr-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50"
+              initial={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" }}
+              animate={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+              transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            >
+              FORWARD
+            </motion.span>
+          </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
