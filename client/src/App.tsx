@@ -8,6 +8,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { Suspense, lazy } from "react";
 import { Loader2 } from "lucide-react";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 // Lazy load pages for better performance
 const Home = lazy(() => import("@/pages/Home"));
@@ -35,6 +36,7 @@ function Router() {
   return (
     <>
       <ScrollToTop />
+      <WhatsAppButton />
       <Suspense fallback={<PageLoader />}>
         <Switch>
           <Route path="/" component={Home} />

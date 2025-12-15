@@ -76,6 +76,16 @@ export const translations = {
           title: "Storage Solutions",
           desc: "Need time between homes? Our high-security storage facilities offer a temporary sanctuary for your possessions with 24/7 surveillance.",
           features: ["Climate-controlled units", "24/7 Video surveillance", "Digital inventory management"]
+        },
+        cleaning: {
+          title: "Professional Cleaning",
+          desc: "We use professional industrial equipment for deep cleaning, floor polishing, and restoration of your old or new property.",
+          features: ["Home & Office Cleaning", "Floor Polishing & Waxing", "Handover Guarantee"]
+        },
+        disposal: {
+          title: "Eco-Friendly Disposal",
+          desc: "Don't worry about the trash. We handle the responsible disposal and recycling of unwanted items, furniture, and renovation debris.",
+          features: ["Furniture Disposal", "Recycling Services", "Debris Removal"]
         }
       }
     },
@@ -382,6 +392,16 @@ export const translations = {
           title: "Lagerlösungen",
           desc: "Brauchen Sie Zeit zwischen den Wohnungen? Unsere Hochsicherheitslager bieten einen vorübergehenden Zufluchtsort für Ihren Besitz mit 24/7-Überwachung.",
           features: ["Klimatisierte Einheiten", "24/7 Videoüberwachung", "Digitales Inventarmanagement"]
+        },
+        cleaning: {
+          title: "Professionelle Reinigung",
+          desc: "Wir verwenden professionelle Industrieausrüstung für Tiefenreinigung, Bodenpolieren und Restaurierung Ihrer alten oder neuen Immobilie.",
+          features: ["Haus- & Büroreinigung", "Bodenpolieren & Wachsen", "Übergabegarantie"]
+        },
+        disposal: {
+          title: "Umweltfreundliche Entsorgung",
+          desc: "Machen Sie sich keine Sorgen um den Müll. Wir kümmern uns um die verantwortungsvolle Entsorgung und das Recycling von unerwünschten Gegenständen, Möbeln und Renovierungsschutt.",
+          features: ["Möbelentsorgung", "Recycling-Service", "Schuttentfernung"]
         }
       }
     },

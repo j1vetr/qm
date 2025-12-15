@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Box, Shield, Clock, Truck, UserCheck, Package, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Box, Shield, Clock, Truck, UserCheck, Package, ArrowRight, CheckCircle2, Sparkles, Trash2 } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 
 export default function ServicesPage() {
@@ -45,6 +45,18 @@ export default function ServicesPage() {
       title: dict.services.items.storage.title,
       desc: dict.services.items.storage.desc,
       features: dict.services.items.storage.features
+    },
+    {
+      icon: Sparkles,
+      title: dict.services.items.cleaning.title,
+      desc: dict.services.items.cleaning.desc,
+      features: dict.services.items.cleaning.features
+    },
+    {
+      icon: Trash2,
+      title: dict.services.items.disposal.title,
+      desc: dict.services.items.disposal.desc,
+      features: dict.services.items.disposal.features
     }
   ];
 
