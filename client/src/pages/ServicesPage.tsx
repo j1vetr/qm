@@ -138,10 +138,10 @@ export default function ServicesPage() {
             <p className="text-xl text-muted-foreground mb-10">
               {dict.services.cta_desc}
             </p>
-            <Link href="/contact">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-xl px-12 py-8 rounded-none skew-x-[-10deg] font-bold shadow-[0_0_30px_-5px_hsl(215,100%,50%)] hover:shadow-[0_0_50px_-5px_hsl(215,100%,50%)] transition-all duration-300">
-                <span className="skew-x-[10deg] flex items-center gap-3">
-                  {dict.services.cta_button} <ArrowRight className="w-6 h-6" />
+            <Link href="/contact" className="block w-full md:w-auto">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-lg md:text-xl px-6 md:px-12 py-6 md:py-8 w-full md:w-auto rounded-none skew-x-[-10deg] font-bold shadow-[0_0_30px_-5px_hsl(215,100%,50%)] hover:shadow-[0_0_50px_-5px_hsl(215,100%,50%)] transition-all duration-300 whitespace-normal h-auto">
+                <span className="skew-x-[10deg] flex items-center justify-center gap-3">
+                  {dict.services.cta_button} <ArrowRight className="w-6 h-6 shrink-0" />
                 </span>
               </Button>
             </Link>
