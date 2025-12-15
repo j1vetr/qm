@@ -38,7 +38,7 @@ export default function Navbar() {
     switch(lang) {
       case 'en': 
         return (
-          <svg viewBox="0 0 60 30" className="w-10 h-auto rounded-sm">
+          <svg viewBox="0 0 60 30" className="w-6 h-auto rounded-sm">
             <clipPath id="s">
               <path d="M0,0 v30 h60 v-30 z"/>
             </clipPath>
@@ -56,7 +56,7 @@ export default function Navbar() {
         );
       case 'de':
         return (
-          <svg viewBox="0 0 5 3" className="w-10 h-auto rounded-sm border border-white/10">
+          <svg viewBox="0 0 5 3" className="w-6 h-auto rounded-sm border border-white/10">
             <rect width="5" height="3" y="0" x="0" fill="#000"/>
             <rect width="5" height="2" y="1" x="0" fill="#D00"/>
             <rect width="5" height="1" y="2" x="0" fill="#FFCE00"/>
@@ -64,7 +64,7 @@ export default function Navbar() {
         );
       case 'fr':
         return (
-          <svg viewBox="0 0 3 2" className="w-10 h-auto rounded-sm border border-white/10">
+          <svg viewBox="0 0 3 2" className="w-6 h-auto rounded-sm border border-white/10">
             <rect width="1" height="2" x="0" fill="#0055A4"/>
             <rect width="1" height="2" x="1" fill="#FFF"/>
             <rect width="1" height="2" x="2" fill="#EF4135"/>
