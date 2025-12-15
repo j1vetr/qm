@@ -690,11 +690,11 @@ function Step4({ data, update, onSubmit, onPrev, dict }: { data: any, update: (d
 
       <div className="flex-grow min-h-[20px]" />
 
-      <div className="flex justify-between pt-8 border-t border-white/5">
-        <Button variant="ghost" onClick={onPrev} className="text-muted-foreground hover:text-white" disabled={isSubmitting}>
+      <div className="flex flex-col-reverse gap-4 md:gap-0 md:flex-row justify-between pt-8 border-t border-white/5">
+        <Button variant="ghost" onClick={onPrev} className="text-muted-foreground hover:text-white w-full md:w-auto" disabled={isSubmitting}>
           <ArrowLeft className="mr-2 w-4 h-4" /> {dict.contact.buttons.back}
         </Button>
-        <Button onClick={handleSubmit} size="lg" className="bg-primary hover:bg-primary/90 text-white w-full md:w-auto px-12 text-lg font-bold shadow-[0_0_20px_rgba(220,38,38,0.5)] hover:shadow-[0_0_30px_rgba(220,38,38,0.7)] transition-all" disabled={isSubmitting}>
+        <Button onClick={handleSubmit} size="lg" className="bg-primary hover:bg-primary/90 text-white w-full md:w-auto px-8 md:px-12 text-lg font-bold shadow-[0_0_20px_hsl(215,100%,50%,0.5)] hover:shadow-[0_0_30px_hsl(215,100%,50%,0.7)] transition-all" disabled={isSubmitting}>
           {isSubmitting ? (
              <span className="flex items-center gap-2">{dict.contact.buttons.processing}</span>
           ) : (
