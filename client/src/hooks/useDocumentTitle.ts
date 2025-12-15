@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
-import { useLanguage } from "./i18n";
+import { useLanguage } from "@/lib/i18n";
 
 export function useDocumentTitle() {
   const [location] = useLocation();
