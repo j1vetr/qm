@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, ArrowRight, Globe } from "lucide-react";
+import { Menu, X, ArrowRight, Globe, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import logo from "@assets/Design_1765834372701.png";
 import { useLanguage } from "@/lib/i18n";
+import { useTheme } from "@/components/theme-provider";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 export default function Navbar() {
@@ -12,6 +13,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
   const { dict, language, setLanguage } = useLanguage();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +58,7 @@ export default function Navbar() {
         );
       case 'de':
         return (
-          <svg viewBox="0 0 5 3" className="w-6 h-auto rounded-sm border border-white/10">
+          <svg viewBox="0 0 5 3" className="w-6 h-auto rounded-sm border border-foreground/10">
             <rect width="5" height="3" y="0" x="0" fill="#000"/>
             <rect width="5" height="2" y="1" x="0" fill="#D00"/>
             <rect width="5" height="1" y="2" x="0" fill="#FFCE00"/>
@@ -64,7 +66,7 @@ export default function Navbar() {
         );
       case 'fr':
         return (
-          <svg viewBox="0 0 3 2" className="w-6 h-auto rounded-sm border border-white/10">
+          <svg viewBox="0 0 3 2" className="w-6 h-auto rounded-sm border border-foreground/10">
             <rect width="1" height="2" x="0" fill="#0055A4"/>
             <rect width="1" height="2" x="1" fill="#FFF"/>
             <rect width="1" height="2" x="2" fill="#EF4135"/>
@@ -79,7 +81,7 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled || location !== "/" ? "bg-background/80 backdrop-blur-md border-b border-white/10" : "bg-transparent"
+        scrolled || location !== "/" ? "bg-background/80 backdrop-blur-md border-b border-border" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -88,7 +90,7 @@ export default function Navbar() {
             {/* Logo Container with Flowing Border Animation */}
             <div className="relative p-3 rounded-xl overflow-hidden">
                {/* Background for contrast */}
-               <div className="absolute inset-0 bg-black/40 backdrop-blur-sm z-0" />
+               <div className="absolute inset-0 bg-background/40 backdrop-blur-sm z-0" />
                
                {/* Animated Road Lane Border */}
                <svg className="absolute inset-0 w-full h-full pointer-events-none z-10">
@@ -98,10 +100,11 @@ export default function Navbar() {
                     height="calc(100% - 4px)" 
                     rx="10" 
                     fill="none"
-                    stroke="white"
+                    stroke="currentColor"
                     strokeWidth="2"
                     strokeDasharray="12 8"
                     strokeOpacity="0.3"
+                    className="text-foreground"
                   />
                   <motion.rect
                     x="2" y="2" 
@@ -122,7 +125,7 @@ export default function Navbar() {
                <img 
                  src={logo} 
                  alt="QuickMove Logo" 
-                 className="h-20 w-auto relative z-20 block" 
+                 className="h-20 w-auto relative z-20 block dark:invert-0 invert" 
                />
             </div>
           </a>
@@ -138,10 +141,22 @@ export default function Navbar() {
             </Link>
           ))}
           
+          {/* Theme Switcher */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="text-foreground hover:text-primary"
+          >
+            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <span className="sr-only">Toggle theme</span>
+          </Button>
+
           {/* Language Switcher */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-               <Button variant="ghost" className="text-white hover:text-primary font-bold flex items-center gap-3 px-3">
+               <Button variant="ghost" className="text-foreground hover:text-primary font-bold flex items-center gap-3 px-3">
                  <div className="scale-125 flex items-center">
                     {getFlag(language)}
                  </div>
@@ -149,12 +164,12 @@ export default function Navbar() {
                  {language.toUpperCase()}
                </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-black/90 backdrop-blur-xl border-white/10 min-w-[140px] flex flex-col items-center p-2">
+            <DropdownMenuContent align="end" className="bg-background/90 backdrop-blur-xl border-border min-w-[140px] flex flex-col items-center p-2">
               {langs.map((l) => (
                 <DropdownMenuItem 
                   key={l.code} 
                   onClick={() => setLanguage(l.code as any)}
-                  className={`cursor-pointer w-full justify-center flex items-center gap-3 py-2 text-base ${language === l.code ? "text-primary font-bold bg-white/5" : "text-white hover:bg-white/10"}`}
+                  className={`cursor-pointer w-full justify-center flex items-center gap-3 py-2 text-base ${language === l.code ? "text-primary font-bold bg-foreground/5" : "text-foreground hover:bg-foreground/10"}`}
                 >
                   <div className="scale-125 flex items-center">
                      {getFlag(l.code)}
@@ -166,7 +181,7 @@ export default function Navbar() {
           </DropdownMenu>
 
           <Link href="/contact">
-            <Button variant="default" className="bg-primary hover:bg-primary/90 text-white font-bold rounded-none skew-x-[-10deg]">
+            <Button variant="default" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-none skew-x-[-10deg]">
               <span className="skew-x-[10deg] flex items-center gap-2">
                 {dict.nav.quote} <ArrowRight className="w-4 h-4" />
               </span>
@@ -176,10 +191,21 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <div className="flex items-center gap-4 md:hidden">
+           {/* Mobile Theme Switcher */}
+           <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="text-foreground hover:text-primary"
+            >
+              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+           </Button>
+
            {/* Mobile Lang Switcher */}
            <DropdownMenu>
              <DropdownMenuTrigger asChild>
-               <Button variant="ghost" className="text-white font-bold flex items-center gap-3 px-3 h-12 text-lg">
+               <Button variant="ghost" className="text-foreground font-bold flex items-center gap-3 px-3 h-12 text-lg">
                  <div className="scale-150 flex items-center">
                     {getFlag(language)}
                  </div>
@@ -187,12 +213,12 @@ export default function Navbar() {
                  {language.toUpperCase()}
                </Button>
              </DropdownMenuTrigger>
-             <DropdownMenuContent align="center" className="bg-black/90 backdrop-blur-xl border-white/10 min-w-[150px] flex flex-col items-center p-2">
+             <DropdownMenuContent align="center" className="bg-background/90 backdrop-blur-xl border-border min-w-[150px] flex flex-col items-center p-2">
                {langs.map((l) => (
                  <DropdownMenuItem 
                    key={l.code} 
                    onClick={() => setLanguage(l.code as any)}
-                   className={`cursor-pointer w-full justify-center text-lg py-3 flex items-center gap-3 ${language === l.code ? "text-primary font-bold bg-white/5" : "text-white hover:bg-white/10"}`}
+                   className={`cursor-pointer w-full justify-center text-lg py-3 flex items-center gap-3 ${language === l.code ? "text-primary font-bold bg-foreground/5" : "text-foreground hover:bg-foreground/10"}`}
                  >
                    <div className="scale-125 flex items-center">
                       {getFlag(l.code)}
@@ -204,7 +230,7 @@ export default function Navbar() {
            </DropdownMenu>
 
            <button
-             className="text-white z-50 relative"
+             className="text-foreground z-50 relative"
              onClick={() => setIsOpen(!isOpen)}
            >
              {isOpen ? <X /> : <Menu />}
@@ -226,7 +252,7 @@ export default function Navbar() {
                 <Link key={item.href} href={item.href}>
                   <a 
                     onClick={() => setIsOpen(false)}
-                    className="text-3xl font-display font-bold uppercase italic hover:text-primary transition-colors"
+                    className="text-3xl font-display font-bold uppercase italic hover:text-primary transition-colors text-foreground"
                   >
                     {item.name}
                   </a>

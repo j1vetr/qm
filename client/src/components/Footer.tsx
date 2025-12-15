@@ -7,7 +7,7 @@ export default function Footer() {
   const { dict } = useLanguage();
   
   return (
-    <footer className="bg-black border-t border-white/10 pt-24 pb-12 relative overflow-hidden">
+    <footer className="bg-background border-t border-border pt-24 pb-12 relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
       
@@ -21,11 +21,11 @@ export default function Footer() {
                 <img 
                   src={logo} 
                   alt="QuickMove Logo" 
-                  className="h-24 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300" 
+                  className="h-24 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300 dark:invert-0 invert" 
                 />
               </a>
             </Link>
-            <h2 className="text-3xl font-display font-bold uppercase italic text-white mb-6 leading-tight">
+            <h2 className="text-3xl font-display font-bold uppercase italic text-foreground mb-6 leading-tight">
               {dict.footer.tagline}
             </h2>
             <p className="text-muted-foreground max-w-sm text-lg leading-relaxed mb-8">
@@ -36,7 +36,7 @@ export default function Footer() {
                 <a 
                   key={i} 
                   href="#" 
-                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all duration-300 hover:scale-110"
+                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300 hover:scale-110"
                 >
                   <Icon className="w-4 h-4" />
                 </a>
@@ -51,7 +51,7 @@ export default function Footer() {
               {["Home", "Services", "Process", "About", "Contact"].map((item) => (
                 <li key={item}>
                   <Link href={`/${item.toLowerCase() === 'home' ? '' : item.toLowerCase()}`}>
-                    <a className="text-muted-foreground hover:text-white transition-colors text-lg font-medium flex items-center group">
+                    <a className="text-muted-foreground hover:text-foreground transition-colors text-lg font-medium flex items-center group">
                       <span className="w-0 overflow-hidden group-hover:w-4 transition-all duration-300 h-[1px] bg-primary mr-0 group-hover:mr-2"></span>
                       {dict.nav[item.toLowerCase() === 'contact' ? 'quote' : item.toLowerCase() as keyof typeof dict.nav] || item}
                     </a>
@@ -67,14 +67,14 @@ export default function Footer() {
              <ul className="space-y-4">
                 <li>
                   <Link href="/privacy">
-                    <a className="text-muted-foreground hover:text-white transition-colors text-sm">
+                    <a className="text-muted-foreground hover:text-foreground transition-colors text-sm">
                       {dict.footer.privacy}
                     </a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/terms">
-                    <a className="text-muted-foreground hover:text-white transition-colors text-sm">
+                    <a className="text-muted-foreground hover:text-foreground transition-colors text-sm">
                       {dict.footer.terms}
                     </a>
                   </Link>
@@ -84,7 +84,7 @@ export default function Footer() {
         </div>
         
         {/* Bottom Bar */}
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
+        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
           <p className="text-muted-foreground font-light tracking-wide">
             {dict.footer.copyright}
           </p>
@@ -93,7 +93,7 @@ export default function Footer() {
             href="https://toov.com.tr" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="group flex items-center gap-2 text-muted-foreground hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-full hover:bg-white/10"
+            className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors bg-foreground/5 px-4 py-2 rounded-full hover:bg-foreground/10"
           >
             <span className="font-medium">Developer by TOOV</span>
             <Heart className="w-3 h-3 text-primary fill-primary animate-pulse" />

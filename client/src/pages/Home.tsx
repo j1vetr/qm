@@ -32,7 +32,7 @@ export default function Home() {
                {dict.home.reimagined_desc}
              </p>
              <Link href="/services">
-               <Button size="lg" className="bg-white text-black hover:bg-white/90 font-bold uppercase tracking-widest px-8 rounded-none">
+               <Button size="lg" className="bg-foreground text-background hover:bg-foreground/90 font-bold uppercase tracking-widest px-8 rounded-none">
                  {dict.home.discover_method}
                </Button>
              </Link>
@@ -41,7 +41,7 @@ export default function Home() {
           {/* Bento Grid Features */}
           <div className="grid grid-cols-2 gap-4">
              {/* Card 1: Speed */}
-             <div className="bg-card border border-white/10 p-8 col-span-2 md:col-span-1 hover:border-primary/50 transition-colors group">
+             <div className="bg-card border border-border p-8 col-span-2 md:col-span-1 hover:border-primary/50 transition-colors group">
                 <div className="mb-6 p-4 bg-primary/10 w-fit rounded group-hover:bg-primary group-hover:text-white transition-colors">
                   <Clock className="w-8 h-8 text-primary group-hover:text-white" />
                 </div>
@@ -50,7 +50,7 @@ export default function Home() {
              </div>
 
              {/* Card 2: Security */}
-             <div className="bg-card border border-white/10 p-8 col-span-2 md:col-span-1 hover:border-primary/50 transition-colors group">
+             <div className="bg-card border border-border p-8 col-span-2 md:col-span-1 hover:border-primary/50 transition-colors group">
                 <div className="mb-6 p-4 bg-primary/10 w-fit rounded group-hover:bg-primary group-hover:text-white transition-colors">
                    <ShieldCheck className="w-8 h-8 text-primary group-hover:text-white" />
                 </div>
@@ -59,7 +59,7 @@ export default function Home() {
              </div>
 
              {/* Card 3: Quality (Full Width) */}
-             <div className="bg-card border border-white/10 p-8 col-span-2 hover:border-primary/50 transition-colors group relative overflow-hidden">
+             <div className="bg-card border border-border p-8 col-span-2 hover:border-primary/50 transition-colors group relative overflow-hidden">
                 <div className="relative z-10 flex items-center justify-between">
                    <div>
                       <div className="mb-6 p-4 bg-primary/10 w-fit rounded group-hover:bg-primary group-hover:text-white transition-colors">
@@ -68,7 +68,7 @@ export default function Home() {
                       <h3 className="text-2xl font-bold uppercase italic mb-2">{dict.home.card_excellence_title}</h3>
                       <p className="text-muted-foreground text-sm max-w-md">{dict.home.card_excellence_desc}</p>
                    </div>
-                   <div className="text-9xl font-display font-black text-white/20 absolute right-0 bottom-0 pointer-events-none select-none">
+                   <div className="text-9xl font-display font-black text-foreground/5 absolute right-0 bottom-0 pointer-events-none select-none">
                       CH
                    </div>
                 </div>
