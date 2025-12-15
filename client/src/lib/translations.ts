@@ -708,6 +708,16 @@ export const translations = {
           title: "Solutions de Stockage",
           desc: "Besoin de temps entre deux logements ? Nos installations de stockage haute sécurité offrent un sanctuaire temporaire pour vos biens.",
           features: ["Unités climatisées", "Surveillance vidéo 24/7", "Gestion d'inventaire numérique"]
+        },
+        cleaning: {
+          title: "Nettoyage Professionnel",
+          desc: "Nous utilisons des équipements industriels professionnels pour le nettoyage en profondeur, le polissage des sols et la restauration de votre ancienne ou nouvelle propriété.",
+          features: ["Nettoyage Domicile & Bureau", "Polissage & Cirage Sols", "Garantie de Remise"]
+        },
+        disposal: {
+          title: "Élimination Écologique",
+          desc: "Ne vous inquiétez pas pour les déchets. Nous gérons l'élimination responsable et le recyclage des objets indésirables, des meubles et des débris de rénovation.",
+          features: ["Élimination Meubles", "Services Recyclage", "Enlèvement Débris"]
         }
       }
     },
