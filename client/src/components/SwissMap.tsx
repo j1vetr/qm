@@ -91,26 +91,20 @@ export default function SwissMap() {
               className="w-full h-full"
               preserveAspectRatio="xMidYMid meet"
             >
-              {/* Detailed Swiss Border Shape */}
-              <motion.path
+              {/* Detailed Swiss Border Shape - Static Path */}
+              <path
                 d="M 15 75 L 20 65 L 18 55 L 25 50 L 30 45 L 35 35 L 45 15 L 55 12 L 65 15 L 75 15 L 85 20 L 92 30 L 95 50 L 90 60 L 85 65 L 75 75 L 75 85 L 65 88 L 50 85 L 40 80 L 30 75 L 20 80 L 15 75 Z"
-                fill="rgba(255,255,255,0.03)"
+                fill="rgba(255,255,255,0.05)"
                 stroke="currentColor"
                 strokeWidth="0.5"
-                className="text-white/20"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="text-white/30"
               />
 
-              {/* Canton Divider Lines (Artistic Interpretation) */}
-              <motion.g
+              {/* Canton Divider Lines (Artistic Interpretation) - Static */}
+              <g
                  stroke="currentColor"
                  strokeWidth="0.1"
-                 className="text-white/10"
-                 initial={{ opacity: 0 }}
-                 whileInView={{ opacity: 1 }}
-                 transition={{ delay: 1, duration: 1 }}
+                 className="text-white/20"
               >
                   {/* Western Split */}
                   <path d="M 30 45 L 30 75" /> 
@@ -122,7 +116,7 @@ export default function SwissMap() {
                   <path d="M 40 30 Q 55 40 70 30" fill="none" />
                   {/* Southern Arc */}
                   <path d="M 40 70 Q 55 60 70 70" fill="none" />
-              </motion.g>
+              </g>
               
               {/* Connections with Flowing Dash Animation */}
               {connections.map(([startIdx, endIdx], i) => {
@@ -162,11 +156,8 @@ export default function SwissMap() {
 
               {/* Cities */}
               {cities.map((city, index) => (
-                <motion.g
+                <g
                   key={city.name}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1 + (index * 0.1) }}
                   onMouseEnter={() => setActiveCity(index)}
                   onMouseLeave={() => setActiveCity(null)}
                   onClick={() => setActiveCity(activeCity === index ? null : index)} // Mobile tap support
@@ -198,7 +189,7 @@ export default function SwissMap() {
                   >
                     {city.name}
                   </text>
-                </motion.g>
+                </g>
               ))}
             </svg>
           </div>
