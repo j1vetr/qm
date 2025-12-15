@@ -84,7 +84,7 @@ export default function SwissMap() {
             </motion.div>
           </div>
 
-          <div className="md:w-2/3 w-full aspect-[4/3] relative">
+          <div className="md:w-2/3 w-full h-[500px] md:h-auto md:aspect-[4/3] relative">
             {/* Stylized Switzerland Map SVG */}
             <svg
               viewBox="0 0 100 100"
@@ -147,7 +147,7 @@ export default function SwissMap() {
                         y1={start.y}
                         x2={end.x}
                         y2={end.y}
-                        stroke="hsl(355 100% 55%)"
+                        stroke="hsl(215 100% 50%)"
                         strokeWidth="0.15"
                         strokeDasharray="1 1"
                         initial={{ strokeDashoffset: 0 }}
