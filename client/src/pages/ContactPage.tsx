@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowLeft, Truck, ShieldCheck, Home, CheckCircle2, User, MapPin, Calendar as CalendarIcon, Package, Layers } from "lucide-react";
+import { ArrowRight, ArrowLeft, Truck, ShieldCheck, Home, CheckCircle2, User, MapPin, Calendar as CalendarIcon, Package, Layers, AlertCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -179,13 +179,18 @@ function StepHeader({ icon: Icon, title, desc }: { icon: any, title: string, des
 
 function Step1({ data, update, onNext, dict }: { data: any, update: (d: any) => void, onNext: () => void, dict: any }) {
   const [localDate, setLocalDate] = useState<Date | undefined>(data.date);
+  const [error, setError] = useState<string | null>(null);
+  const errorRef = useRef<HTMLDivElement>(null);
 
   const handleNext = () => {
     if (data.fromZip && data.toZip && data.fromCity && data.toCity) {
+       setError(null);
        onNext();
     } else {
-       // Simple alert for mockup, in production use form validation
-       alert("Please fill in at least the ZIP codes and Cities.");
+       setError("Please fill in at least the ZIP codes and Cities.");
+       setTimeout(() => {
+         errorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+       }, 100);
     }
   };
 
@@ -327,6 +332,18 @@ function Step1({ data, update, onNext, dict }: { data: any, update: (d: any) => 
       </div>
 
       <div className="flex-grow min-h-[20px]" />
+
+      {error && (
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg flex items-center gap-3 text-red-500"
+          ref={errorRef}
+        >
+          <AlertCircle className="w-5 h-5 flex-shrink-0" />
+          <p className="text-sm font-medium">{error}</p>
+        </motion.div>
+      )}
       
       <div className="flex justify-end pt-4">
         <Button onClick={handleNext} size="lg" className="bg-primary hover:bg-primary/90 text-white w-full md:w-auto px-8 font-bold tracking-wide">
@@ -469,8 +486,8 @@ function Step2({ data, update, onNext, onPrev, dict }: { data: any, update: (d: 
 
       <div className="flex-grow min-h-[20px]" />
 
-      <div className="flex justify-between pt-8 border-t border-white/5">
-        <Button variant="ghost" onClick={onPrev} className="text-muted-foreground hover:text-white">
+      <div className="flex flex-col-reverse gap-4 md:gap-0 md:flex-row justify-between pt-8 border-t border-white/5">
+        <Button variant="ghost" onClick={onPrev} className="text-muted-foreground hover:text-white w-full md:w-auto">
           <ArrowLeft className="mr-2 w-4 h-4" /> {dict.contact.buttons.back}
         </Button>
         <Button onClick={onNext} size="lg" className="bg-primary hover:bg-primary/90 text-white w-full md:w-auto px-8">
@@ -571,8 +588,8 @@ function Step3({ data, update, onNext, onPrev, dict }: { data: any, update: (d: 
 
       <div className="flex-grow min-h-[20px]" />
 
-      <div className="flex justify-between pt-8 border-t border-white/5">
-        <Button variant="ghost" onClick={onPrev} className="text-muted-foreground hover:text-white">
+      <div className="flex flex-col-reverse gap-4 md:gap-0 md:flex-row justify-between pt-8 border-t border-white/5">
+        <Button variant="ghost" onClick={onPrev} className="text-muted-foreground hover:text-white w-full md:w-auto">
           <ArrowLeft className="mr-2 w-4 h-4" /> {dict.contact.buttons.back}
         </Button>
         <Button onClick={onNext} size="lg" className="bg-primary hover:bg-primary/90 text-white w-full md:w-auto px-8">
