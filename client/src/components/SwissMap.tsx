@@ -89,6 +89,7 @@ export default function SwissMap() {
             <svg
               viewBox="0 0 100 100"
               className="w-full h-full drop-shadow-[0_0_15px_rgba(220,38,38,0.3)]"
+              preserveAspectRatio="xMidYMid meet"
             >
               {/* Detailed Swiss Border Shape */}
               <motion.path
@@ -97,9 +98,9 @@ export default function SwissMap() {
                 stroke="currentColor"
                 strokeWidth="0.5"
                 className="text-white/20"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 2, ease: "easeInOut" }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
               />
 
               {/* Canton Divider Lines (Artistic Interpretation) */}

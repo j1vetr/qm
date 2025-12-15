@@ -191,7 +191,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Toggle */}
-        <div className="flex items-center gap-4 md:hidden">
+        <div className="flex items-center gap-4 md:hidden ml-auto">
            {/* Mobile Theme Switcher */}
            <Button
               variant="ghost"
