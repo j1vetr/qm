@@ -170,7 +170,7 @@ function StepHeader({ icon: Icon, title, desc }: { icon: any, title: string, des
         <Icon className="w-6 h-6" />
       </div>
       <div>
-        <h3 className="text-xl md:text-2xl font-bold font-display uppercase italic text-white">{title}</h3>
+        <h3 className="text-xl md:text-2xl font-bold font-display uppercase italic text-foreground">{title}</h3>
         <p className="text-muted-foreground text-xs md:text-sm">{desc}</p>
       </div>
     </div>
@@ -291,7 +291,7 @@ function Step1({ data, update, onNext, dict }: { data: any, update: (d: any) => 
               <Button
                 variant={"outline"}
                 className={cn(
-                  "w-full justify-start text-left font-normal h-12 border-white/10 bg-background/50 hover:bg-white/5 hover:text-white",
+                  "w-full justify-start text-left font-normal h-12 border-white/10 bg-background/50 hover:bg-primary/5 hover:text-primary dark:hover:bg-white/5 dark:hover:text-white",
                   !localDate && "text-muted-foreground"
                 )}
               >
