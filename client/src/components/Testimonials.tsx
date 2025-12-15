@@ -43,7 +43,7 @@ export default function Testimonials() {
             <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-4">Testimonials</span>
             <h2 className="text-5xl font-display font-bold uppercase italic leading-tight mb-8">
               Trusted by <br/>
-              <span className="text-stroke text-transparent">Switzerland</span>
+              <span className="text-primary">Switzerland</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-md">
               Don't just take our word for it. Here is what our clients have to say about their relocation experience.
