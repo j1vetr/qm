@@ -21,7 +21,7 @@ export default function Footer() {
                 <img 
                   src={logo} 
                   alt="QuickMove Logo" 
-                  className="h-12 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300" 
+                  className="h-16 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300" 
                 />
               </a>
             </Link>
@@ -66,14 +66,18 @@ export default function Footer() {
              <h4 className="text-primary font-bold uppercase tracking-[0.2em] text-xs mb-8">Legal</h4>
              <ul className="space-y-4">
                 <li>
-                  <a href="#" className="text-muted-foreground hover:text-white transition-colors text-sm">
-                    {dict.footer.privacy}
-                  </a>
+                  <Link href="/privacy">
+                    <a className="text-muted-foreground hover:text-white transition-colors text-sm">
+                      {dict.footer.privacy}
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-muted-foreground hover:text-white transition-colors text-sm">
-                    {dict.footer.terms}
-                  </a>
+                  <Link href="/terms">
+                    <a className="text-muted-foreground hover:text-white transition-colors text-sm">
+                      {dict.footer.terms}
+                    </a>
+                  </Link>
                 </li>
              </ul>
           </div>

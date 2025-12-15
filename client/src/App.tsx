@@ -10,6 +10,8 @@ import ServicesPage from "@/pages/ServicesPage";
 import ProcessPage from "@/pages/ProcessPage";
 import ContactPage from "@/pages/ContactPage";
 import AboutPage from "@/pages/AboutPage";
+import PrivacyPage from "@/pages/PrivacyPage";
+import TermsPage from "@/pages/TermsPage";
 import ScrollToTop from "@/components/ScrollToTop";
 
 // Wrapper to handle scroll on route change
@@ -23,6 +25,8 @@ function Router() {
         <Route path="/process" component={ProcessPage} />
         <Route path="/contact" component={ContactPage} />
         <Route path="/about" component={AboutPage} />
+        <Route path="/privacy" component={PrivacyPage} />
+        <Route path="/terms" component={TermsPage} />
         <Route component={NotFound} />
       </Switch>
     </>
