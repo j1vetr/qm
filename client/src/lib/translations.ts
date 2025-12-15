@@ -225,7 +225,7 @@ export const translations = {
     footer: {
       tagline: "Relocation Reimagined.",
       address: "Bahnhofstrasse 1, 8001 Zürich",
-      copyright: "© 2024 QuickMove AG. All rights reserved.",
+      copyright: "© 2025 QuickMove All Rights Reserved.",
       privacy: "Privacy Policy",
       terms: "Terms of Service"
     }
@@ -454,7 +454,7 @@ export const translations = {
     footer: {
       tagline: "Umzug Neu Gedacht.",
       address: "Bahnhofstrasse 1, 8001 Zürich",
-      copyright: "© 2024 QuickMove AG. Alle Rechte vorbehalten.",
+      copyright: "© 2025 QuickMove All Rights Reserved.",
       privacy: "Datenschutzerklärung",
       terms: "AGB"
     }
@@ -683,7 +683,7 @@ export const translations = {
     footer: {
       tagline: "Déménagement Réinventé.",
       address: "Bahnhofstrasse 1, 8001 Zurich",
-      copyright: "© 2024 QuickMove SA. Tous droits réservés.",
+      copyright: "© 2025 QuickMove All Rights Reserved.",
       privacy: "Politique de Confidentialité",
       terms: "CGV"
     }
