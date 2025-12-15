@@ -170,11 +170,31 @@ export default function Navbar() {
         {/* Mobile Toggle */}
         <div className="flex items-center gap-4 md:hidden">
            {/* Mobile Lang Switcher */}
-           <Button variant="ghost" size="sm" onClick={() => setLanguage(language === 'en' ? 'de' : language === 'de' ? 'fr' : 'en')} className="text-white font-bold flex items-center gap-2 px-2">
-             {getFlag(language)}
-             <span className="opacity-50 font-light">|</span>
-             {language.toUpperCase()}
-           </Button>
+           <DropdownMenu>
+             <DropdownMenuTrigger asChild>
+               <Button variant="ghost" className="text-white font-bold flex items-center gap-3 px-3 h-12 text-lg">
+                 <div className="scale-125 flex items-center">
+                    {getFlag(language)}
+                 </div>
+                 <span className="opacity-50 font-light">|</span>
+                 {language.toUpperCase()}
+               </Button>
+             </DropdownMenuTrigger>
+             <DropdownMenuContent align="end" className="bg-black/90 backdrop-blur-xl border-white/10 min-w-[150px]">
+               {langs.map((l) => (
+                 <DropdownMenuItem 
+                   key={l.code} 
+                   onClick={() => setLanguage(l.code as any)}
+                   className={`cursor-pointer text-lg py-3 flex items-center gap-3 ${language === l.code ? "text-primary font-bold" : "text-white"}`}
+                 >
+                   <div className="scale-125 flex items-center">
+                      {getFlag(l.code)}
+                   </div>
+                   {l.label}
+                 </DropdownMenuItem>
+               ))}
+             </DropdownMenuContent>
+           </DropdownMenu>
 
            <button
              className="text-white z-50 relative"
