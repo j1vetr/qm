@@ -206,24 +206,17 @@ export default function Navbar() {
            {/* Mobile Lang Switcher */}
            <DropdownMenu>
              <DropdownMenuTrigger asChild>
-               <Button variant="ghost" className="text-foreground font-bold flex items-center gap-3 px-3 h-12 text-lg">
-                 <div className="scale-150 flex items-center">
-                    {getFlag(language)}
-                 </div>
-                 <span className="opacity-50 font-light">|</span>
+               <Button variant="ghost" className="text-foreground font-bold flex items-center gap-2 px-2 h-10 text-lg">
                  {language.toUpperCase()}
                </Button>
              </DropdownMenuTrigger>
-             <DropdownMenuContent align="center" className="bg-background/90 backdrop-blur-xl border-border min-w-[150px] flex flex-col items-center p-2">
+             <DropdownMenuContent align="center" className="bg-background/90 backdrop-blur-xl border-border min-w-[100px] flex flex-col items-center p-2">
                {langs.map((l) => (
                  <DropdownMenuItem 
                    key={l.code} 
                    onClick={() => setLanguage(l.code as any)}
                    className={`cursor-pointer w-full justify-center text-lg py-3 flex items-center gap-3 ${language === l.code ? "text-primary font-bold bg-foreground/5" : "text-foreground hover:bg-foreground/10"}`}
                  >
-                   <div className="scale-125 flex items-center">
-                      {getFlag(l.code)}
-                   </div>
                    {l.label}
                  </DropdownMenuItem>
                ))}
