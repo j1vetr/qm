@@ -16,11 +16,13 @@ import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useLanguage } from "@/lib/i18n";
 
 export default function ContactPage() {
   const [step, setStep] = useState(1);
   const { toast } = useToast();
   const topRef = useRef<HTMLDivElement>(null);
+  const { dict } = useLanguage();
   
   // Initialize with some defaults
   const [formData, setFormData] = useState<any>({
@@ -77,22 +79,21 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-4">Start Your Journey</span>
+            <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-4">{dict.contact.subtitle}</span>
             <h1 className="text-4xl md:text-7xl font-display font-bold uppercase italic mb-4 leading-tight">
-              Request <span className="text-primary">Proposal</span>
+              {dict.contact.title.split(' ')[0]} <span className="text-primary">{dict.contact.title.split(' ').slice(1).join(' ')}</span>
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
-              This isn't just a form. It's the beginning of a meticulously planned operation. The more details you provide, the more precise our logistical planning will be.
+              {dict.contact.description}
             </p>
           </motion.div>
 
           {/* Advanced Progress Bar */}
           <div className="mb-8 md:mb-12 relative">
             <div className="flex justify-between mb-4 text-[10px] md:text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              <span className={cn("transition-colors duration-300", step >= 1 ? "text-primary" : "")}>01. Logistics</span>
-              <span className={cn("transition-colors duration-300", step >= 2 ? "text-primary" : "")}>02. Property</span>
-              <span className={cn("transition-colors duration-300", step >= 3 ? "text-primary" : "")}>03. Services</span>
-              <span className={cn("transition-colors duration-300", step >= 4 ? "text-primary" : "")}>04. Personal</span>
+              {dict.contact.steps_nav.map((label, index) => (
+                <span key={index} className={cn("transition-colors duration-300", step >= index + 1 ? "text-primary" : "")}>{label}</span>
+              ))}
             </div>
             <div className="h-1 bg-white/10 w-full rounded-full overflow-hidden">
               <motion.div 
@@ -116,6 +117,7 @@ export default function ContactPage() {
                     data={formData} 
                     update={(d) => setFormData({ ...formData, ...d })} 
                     onNext={nextStep} 
+                    dict={dict}
                   />
                 )}
                 {step === 2 && (
@@ -125,6 +127,7 @@ export default function ContactPage() {
                     update={(d) => setFormData({ ...formData, ...d })} 
                     onNext={nextStep} 
                     onPrev={prevStep}
+                    dict={dict}
                   />
                 )}
                 {step === 3 && (
@@ -134,6 +137,7 @@ export default function ContactPage() {
                     update={(d) => setFormData({ ...formData, ...d })} 
                     onNext={nextStep} 
                     onPrev={prevStep}
+                    dict={dict}
                   />
                 )}
                 {step === 4 && (
@@ -143,6 +147,7 @@ export default function ContactPage() {
                     update={(d) => setFormData({ ...formData, ...d })} 
                     onSubmit={handleFinalSubmit} 
                     onPrev={prevStep}
+                    dict={dict}
                   />
                 )}
               </AnimatePresence>
@@ -172,7 +177,7 @@ function StepHeader({ icon: Icon, title, desc }: { icon: any, title: string, des
   );
 }
 
-function Step1({ data, update, onNext }: { data: any, update: (d: any) => void, onNext: () => void }) {
+function Step1({ data, update, onNext, dict }: { data: any, update: (d: any) => void, onNext: () => void, dict: any }) {
   const [localDate, setLocalDate] = useState<Date | undefined>(data.date);
 
   const handleNext = () => {
@@ -191,10 +196,10 @@ function Step1({ data, update, onNext }: { data: any, update: (d: any) => void, 
       exit={{ opacity: 0, x: -20 }}
       className="space-y-8 h-full flex flex-col"
     >
-      <StepHeader icon={Truck} title="The Route" desc="Defining the trajectory of your move." />
+      <StepHeader icon={Truck} title={dict.contact.step1.title} desc={dict.contact.step1.desc} />
 
       <div className="space-y-4">
-         <Label className="text-base font-semibold">Move Type</Label>
+         <Label className="text-base font-semibold">{dict.contact.step1.move_type}</Label>
          <div className="grid grid-cols-2 gap-4">
             <div 
               onClick={() => update({ moveType: "private" })}
@@ -204,7 +209,7 @@ function Step1({ data, update, onNext }: { data: any, update: (d: any) => void, 
               )}
             >
               <User className="w-6 h-6" />
-              <span className="font-bold uppercase tracking-wider text-sm">Private</span>
+              <span className="font-bold uppercase tracking-wider text-sm">{dict.contact.step1.private}</span>
             </div>
             <div 
               onClick={() => update({ moveType: "business" })}
@@ -214,7 +219,7 @@ function Step1({ data, update, onNext }: { data: any, update: (d: any) => void, 
               )}
             >
               <Briefcase className="w-6 h-6" />
-              <span className="font-bold uppercase tracking-wider text-sm">Business</span>
+              <span className="font-bold uppercase tracking-wider text-sm">{dict.contact.step1.business}</span>
             </div>
          </div>
       </div>
@@ -229,13 +234,13 @@ function Step1({ data, update, onNext }: { data: any, update: (d: any) => void, 
         <div className="space-y-4 p-6 bg-white/5 rounded-xl border border-white/5 hover:border-primary/30 transition-colors">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-2 h-2 rounded-full bg-primary" />
-            <Label className="text-primary font-bold uppercase tracking-wider text-xs">Origin</Label>
+            <Label className="text-primary font-bold uppercase tracking-wider text-xs">{dict.contact.step1.origin}</Label>
           </div>
           <div className="grid grid-cols-3 gap-3">
             <div className="col-span-1">
               <Input 
                 value={data.fromZip} 
-                placeholder="ZIP" 
+                placeholder={dict.contact.step1.zip}
                 className="bg-background/50 border-white/10 focus:border-primary/50 transition-all" 
                 onChange={(e) => update({ fromZip: e.target.value })} 
               />
@@ -243,7 +248,7 @@ function Step1({ data, update, onNext }: { data: any, update: (d: any) => void, 
             <div className="col-span-2">
               <Input 
                 value={data.fromCity} 
-                placeholder="City" 
+                placeholder={dict.contact.step1.city}
                 className="bg-background/50 border-white/10 focus:border-primary/50 transition-all" 
                 onChange={(e) => update({ fromCity: e.target.value })} 
               />
@@ -255,13 +260,13 @@ function Step1({ data, update, onNext }: { data: any, update: (d: any) => void, 
         <div className="space-y-4 p-6 bg-white/5 rounded-xl border border-white/5 hover:border-primary/30 transition-colors">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-2 h-2 rounded-full border border-primary" />
-            <Label className="text-primary font-bold uppercase tracking-wider text-xs">Destination</Label>
+            <Label className="text-primary font-bold uppercase tracking-wider text-xs">{dict.contact.step1.destination}</Label>
           </div>
            <div className="grid grid-cols-3 gap-3">
             <div className="col-span-1">
               <Input 
                 value={data.toZip} 
-                placeholder="ZIP" 
+                placeholder={dict.contact.step1.zip}
                 className="bg-background/50 border-white/10 focus:border-primary/50 transition-all" 
                 onChange={(e) => update({ toZip: e.target.value })} 
               />
@@ -269,7 +274,7 @@ function Step1({ data, update, onNext }: { data: any, update: (d: any) => void, 
             <div className="col-span-2">
               <Input 
                 value={data.toCity} 
-                placeholder="City" 
+                placeholder={dict.contact.step1.city}
                 className="bg-background/50 border-white/10 focus:border-primary/50 transition-all" 
                 onChange={(e) => update({ toCity: e.target.value })} 
               />
@@ -280,7 +285,7 @@ function Step1({ data, update, onNext }: { data: any, update: (d: any) => void, 
 
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-4">
-          <Label className="text-base font-semibold">Desired Date</Label>
+          <Label className="text-base font-semibold">{dict.contact.step1.date}</Label>
           <Popover>
             <PopoverTrigger asChild>
               <Button
@@ -291,7 +296,7 @@ function Step1({ data, update, onNext }: { data: any, update: (d: any) => void, 
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4 text-primary" />
-                {localDate ? format(localDate, "PPP") : <span>Pick a date</span>}
+                {localDate ? format(localDate, "PPP") : <span>{dict.contact.step1.pick_date}</span>}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
@@ -307,15 +312,15 @@ function Step1({ data, update, onNext }: { data: any, update: (d: any) => void, 
         </div>
         
         <div className="space-y-4">
-          <Label className="text-base font-semibold">Flexibility</Label>
+          <Label className="text-base font-semibold">{dict.contact.step1.flexibility}</Label>
           <Select defaultValue={data.flexibility} onValueChange={(v) => update({ flexibility: v })}>
             <SelectTrigger className="h-12 bg-background/50 border-white/10 hover:bg-white/5">
               <SelectValue placeholder="Select flexibility" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="fixed">Fixed Date (Strict)</SelectItem>
-              <SelectItem value="flexible_3_days">+/- 3 Days</SelectItem>
-              <SelectItem value="flexible_week">+/- 1 Week</SelectItem>
+              <SelectItem value="fixed">{dict.contact.step1.flex_fixed}</SelectItem>
+              <SelectItem value="flexible_3_days">{dict.contact.step1.flex_3days}</SelectItem>
+              <SelectItem value="flexible_week">{dict.contact.step1.flex_week}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -325,14 +330,14 @@ function Step1({ data, update, onNext }: { data: any, update: (d: any) => void, 
       
       <div className="flex justify-end pt-4">
         <Button onClick={handleNext} size="lg" className="bg-primary hover:bg-primary/90 text-white w-full md:w-auto px-8 font-bold tracking-wide">
-          Continue to Property <ArrowRight className="ml-2 w-4 h-4" />
+          {dict.contact.buttons.continue_property} <ArrowRight className="ml-2 w-4 h-4" />
         </Button>
       </div>
     </motion.div>
   );
 }
 
-function Step2({ data, update, onNext, onPrev }: { data: any, update: (d: any) => void, onNext: () => void, onPrev: () => void }) {
+function Step2({ data, update, onNext, onPrev, dict }: { data: any, update: (d: any) => void, onNext: () => void, onPrev: () => void, dict: any }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -340,11 +345,11 @@ function Step2({ data, update, onNext, onPrev }: { data: any, update: (d: any) =
       exit={{ opacity: 0, x: -20 }}
       className="space-y-8 h-full flex flex-col"
     >
-       <StepHeader icon={Home} title="Property Scope" desc="Volume and access assessment." />
+       <StepHeader icon={Home} title={dict.contact.step2.title} desc={dict.contact.step2.desc} />
 
       <div className="grid md:grid-cols-3 gap-6">
         <div className="space-y-4 p-5 border border-white/10 rounded-xl bg-white/5 hover:border-primary/50 transition-colors">
-          <Label className="flex items-center gap-2 text-primary font-bold"><Layers className="w-4 h-4" /> Surface (m²)</Label>
+          <Label className="flex items-center gap-2 text-primary font-bold"><Layers className="w-4 h-4" /> {dict.contact.step2.surface}</Label>
           <div className="flex items-center gap-4">
             <Slider 
                defaultValue={[data.surfaceArea]} max={300} step={5} 
@@ -355,7 +360,7 @@ function Step2({ data, update, onNext, onPrev }: { data: any, update: (d: any) =
           </div>
         </div>
         <div className="space-y-4 p-5 border border-white/10 rounded-xl bg-white/5 hover:border-primary/50 transition-colors">
-          <Label className="flex items-center gap-2 text-primary font-bold"><Package className="w-4 h-4" /> Rooms</Label>
+          <Label className="flex items-center gap-2 text-primary font-bold"><Package className="w-4 h-4" /> {dict.contact.step2.rooms}</Label>
           <div className="flex items-center gap-4">
             <Slider 
                defaultValue={[data.rooms]} max={10} step={0.5} 
@@ -366,7 +371,7 @@ function Step2({ data, update, onNext, onPrev }: { data: any, update: (d: any) =
           </div>
         </div>
          <div className="space-y-4 p-5 border border-white/10 rounded-xl bg-white/5 hover:border-primary/50 transition-colors">
-          <Label className="flex items-center gap-2 text-primary font-bold"><User className="w-4 h-4" /> People</Label>
+          <Label className="flex items-center gap-2 text-primary font-bold"><User className="w-4 h-4" /> {dict.contact.step2.people}</Label>
           <div className="flex items-center gap-4">
             <Slider 
                defaultValue={[data.people]} max={10} step={1} 
@@ -381,10 +386,10 @@ function Step2({ data, update, onNext, onPrev }: { data: any, update: (d: any) =
       <div className="grid md:grid-cols-2 gap-8 pt-4">
         {/* Origin Access */}
         <div className="space-y-4 p-6 border border-white/5 rounded-xl bg-background/30">
-          <Label className="text-primary font-bold uppercase tracking-wider text-xs border-b border-white/10 pb-3 block mb-4">Origin Access</Label>
+          <Label className="text-primary font-bold uppercase tracking-wider text-xs border-b border-white/10 pb-3 block mb-4">{dict.contact.step2.origin_access}</Label>
           <div className="grid grid-cols-2 gap-4">
              <div className="space-y-2">
-               <Label className="text-xs text-muted-foreground">Floor</Label>
+               <Label className="text-xs text-muted-foreground">{dict.contact.step2.floor}</Label>
                <Input 
                  value={data.floorFrom} 
                  onChange={(e) => update({ floorFrom: e.target.value })} 
@@ -394,26 +399,26 @@ function Step2({ data, update, onNext, onPrev }: { data: any, update: (d: any) =
                />
              </div>
              <div className="space-y-2">
-               <Label className="text-xs text-muted-foreground">Elevator</Label>
+               <Label className="text-xs text-muted-foreground">{dict.contact.step2.elevator}</Label>
                <Select defaultValue={data.elevatorFrom} onValueChange={(v) => update({ elevatorFrom: v })}>
                  <SelectTrigger className="h-10 bg-white/5 border-white/10"><SelectValue /></SelectTrigger>
                  <SelectContent>
-                   <SelectItem value="yes">Yes, Large</SelectItem>
-                   <SelectItem value="small">Yes, Small</SelectItem>
-                   <SelectItem value="no">No Elevator</SelectItem>
-                   <SelectItem value="lift_needed">External Lift Needed</SelectItem>
+                   <SelectItem value="yes">{dict.contact.step2.lift_yes_large}</SelectItem>
+                   <SelectItem value="small">{dict.contact.step2.lift_yes_small}</SelectItem>
+                   <SelectItem value="no">{dict.contact.step2.lift_no}</SelectItem>
+                   <SelectItem value="lift_needed">{dict.contact.step2.lift_needed}</SelectItem>
                  </SelectContent>
                </Select>
              </div>
              <div className="space-y-2 col-span-2">
-               <Label className="text-xs text-muted-foreground">Parking Distance</Label>
+               <Label className="text-xs text-muted-foreground">{dict.contact.step2.parking}</Label>
                <Select defaultValue={data.parkingFrom} onValueChange={(v) => update({ parkingFrom: v })}>
                  <SelectTrigger className="h-10 bg-white/5 border-white/10"><SelectValue /></SelectTrigger>
                  <SelectContent>
-                   <SelectItem value="driveway">Driveway / Private</SelectItem>
-                   <SelectItem value="street">Street (&lt; 20m)</SelectItem>
-                   <SelectItem value="far">Street (&gt; 20m)</SelectItem>
-                   <SelectItem value="permit_needed">Permit Required</SelectItem>
+                   <SelectItem value="driveway">{dict.contact.step2.parking_driveway}</SelectItem>
+                   <SelectItem value="street">{dict.contact.step2.parking_street}</SelectItem>
+                   <SelectItem value="far">{dict.contact.step2.parking_far}</SelectItem>
+                   <SelectItem value="permit_needed">{dict.contact.step2.parking_permit}</SelectItem>
                  </SelectContent>
                </Select>
              </div>
@@ -422,10 +427,10 @@ function Step2({ data, update, onNext, onPrev }: { data: any, update: (d: any) =
 
         {/* Destination Access */}
         <div className="space-y-4 p-6 border border-white/5 rounded-xl bg-background/30">
-          <Label className="text-primary font-bold uppercase tracking-wider text-xs border-b border-white/10 pb-3 block mb-4">Destination Access</Label>
+          <Label className="text-primary font-bold uppercase tracking-wider text-xs border-b border-white/10 pb-3 block mb-4">{dict.contact.step2.dest_access}</Label>
           <div className="grid grid-cols-2 gap-4">
              <div className="space-y-2">
-               <Label className="text-xs text-muted-foreground">Floor</Label>
+               <Label className="text-xs text-muted-foreground">{dict.contact.step2.floor}</Label>
                <Input 
                  value={data.floorTo} 
                  onChange={(e) => update({ floorTo: e.target.value })} 
@@ -435,26 +440,26 @@ function Step2({ data, update, onNext, onPrev }: { data: any, update: (d: any) =
                />
              </div>
              <div className="space-y-2">
-               <Label className="text-xs text-muted-foreground">Elevator</Label>
+               <Label className="text-xs text-muted-foreground">{dict.contact.step2.elevator}</Label>
                 <Select defaultValue={data.elevatorTo} onValueChange={(v) => update({ elevatorTo: v })}>
                  <SelectTrigger className="h-10 bg-white/5 border-white/10"><SelectValue /></SelectTrigger>
                  <SelectContent>
-                   <SelectItem value="yes">Yes, Large</SelectItem>
-                   <SelectItem value="small">Yes, Small</SelectItem>
-                   <SelectItem value="no">No Elevator</SelectItem>
-                   <SelectItem value="lift_needed">External Lift Needed</SelectItem>
+                   <SelectItem value="yes">{dict.contact.step2.lift_yes_large}</SelectItem>
+                   <SelectItem value="small">{dict.contact.step2.lift_yes_small}</SelectItem>
+                   <SelectItem value="no">{dict.contact.step2.lift_no}</SelectItem>
+                   <SelectItem value="lift_needed">{dict.contact.step2.lift_needed}</SelectItem>
                  </SelectContent>
                </Select>
              </div>
              <div className="space-y-2 col-span-2">
-               <Label className="text-xs text-muted-foreground">Parking Distance</Label>
+               <Label className="text-xs text-muted-foreground">{dict.contact.step2.parking}</Label>
                <Select defaultValue={data.parkingTo} onValueChange={(v) => update({ parkingTo: v })}>
                  <SelectTrigger className="h-10 bg-white/5 border-white/10"><SelectValue /></SelectTrigger>
                  <SelectContent>
-                   <SelectItem value="driveway">Driveway / Private</SelectItem>
-                   <SelectItem value="street">Street (&lt; 20m)</SelectItem>
-                   <SelectItem value="far">Street (&gt; 20m)</SelectItem>
-                   <SelectItem value="permit_needed">Permit Required</SelectItem>
+                   <SelectItem value="driveway">{dict.contact.step2.parking_driveway}</SelectItem>
+                   <SelectItem value="street">{dict.contact.step2.parking_street}</SelectItem>
+                   <SelectItem value="far">{dict.contact.step2.parking_far}</SelectItem>
+                   <SelectItem value="permit_needed">{dict.contact.step2.parking_permit}</SelectItem>
                  </SelectContent>
                </Select>
              </div>
@@ -466,17 +471,17 @@ function Step2({ data, update, onNext, onPrev }: { data: any, update: (d: any) =
 
       <div className="flex justify-between pt-8 border-t border-white/5">
         <Button variant="ghost" onClick={onPrev} className="text-muted-foreground hover:text-white">
-          <ArrowLeft className="mr-2 w-4 h-4" /> Back
+          <ArrowLeft className="mr-2 w-4 h-4" /> {dict.contact.buttons.back}
         </Button>
         <Button onClick={onNext} size="lg" className="bg-primary hover:bg-primary/90 text-white w-full md:w-auto px-8">
-          Continue to Services <ArrowRight className="ml-2 w-4 h-4" />
+          {dict.contact.buttons.continue_services} <ArrowRight className="ml-2 w-4 h-4" />
         </Button>
       </div>
     </motion.div>
   );
 }
 
-function Step3({ data, update, onNext, onPrev }: { data: any, update: (d: any) => void, onNext: () => void, onPrev: () => void }) {
+function Step3({ data, update, onNext, onPrev, dict }: { data: any, update: (d: any) => void, onNext: () => void, onPrev: () => void, dict: any }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -484,80 +489,80 @@ function Step3({ data, update, onNext, onPrev }: { data: any, update: (d: any) =
       exit={{ opacity: 0, x: -20 }}
       className="space-y-8 h-full flex flex-col"
     >
-      <StepHeader icon={ShieldCheck} title="Premium Services" desc="Customize your white-glove experience." />
+      <StepHeader icon={ShieldCheck} title={dict.contact.step3.title} desc={dict.contact.step3.desc} />
 
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-6">
-          <Label className="text-lg font-bold block mb-4 border-b border-white/10 pb-2">Packing & Handling</Label>
+          <Label className="text-lg font-bold block mb-4 border-b border-white/10 pb-2">{dict.contact.step3.packing_handling}</Label>
           
           <div className="space-y-3">
              <div onClick={() => update({ packingLevel: "none" })} className={cn("cursor-pointer p-4 border rounded-xl transition-all hover:translate-x-1", data.packingLevel === "none" ? "border-primary bg-primary/10" : "border-white/10 hover:border-white/30")}>
-               <div className="flex justify-between font-bold text-sm md:text-base"><span>Self Pack</span> <span className="text-muted-foreground font-normal text-xs uppercase tracking-wider">Standard</span></div>
-               <p className="text-xs text-muted-foreground mt-1">You pack everything. We transport boxes and furniture.</p>
+               <div className="flex justify-between font-bold text-sm md:text-base"><span>{dict.contact.step3.pack_self}</span> <span className="text-muted-foreground font-normal text-xs uppercase tracking-wider">{dict.contact.step3.pack_self_sub}</span></div>
+               <p className="text-xs text-muted-foreground mt-1">{dict.contact.step3.pack_self_desc}</p>
              </div>
              
              <div onClick={() => update({ packingLevel: "fragile" })} className={cn("cursor-pointer p-4 border rounded-xl transition-all hover:translate-x-1", data.packingLevel === "fragile" ? "border-primary bg-primary/10" : "border-white/10 hover:border-white/30")}>
-               <div className="flex justify-between font-bold text-sm md:text-base"><span>Fragile Only</span> <span className="text-primary font-bold text-xs uppercase tracking-wider">Upgrade</span></div>
-               <p className="text-xs text-muted-foreground mt-1">We pack glassware, art, and electronics. You pack clothes/books.</p>
+               <div className="flex justify-between font-bold text-sm md:text-base"><span>{dict.contact.step3.pack_fragile}</span> <span className="text-primary font-bold text-xs uppercase tracking-wider">{dict.contact.step3.pack_fragile_sub}</span></div>
+               <p className="text-xs text-muted-foreground mt-1">{dict.contact.step3.pack_fragile_desc}</p>
              </div>
              
              <div onClick={() => update({ packingLevel: "full" })} className={cn("cursor-pointer p-4 border rounded-xl transition-all hover:translate-x-1", data.packingLevel === "full" ? "border-primary bg-primary/10" : "border-white/10 hover:border-white/30")}>
-               <div className="flex justify-between font-bold text-sm md:text-base"><span>Full Service</span> <span className="text-primary font-bold text-xs uppercase tracking-wider">Recommended</span></div>
-               <p className="text-xs text-muted-foreground mt-1">We bring materials and pack absolutely everything.</p>
+               <div className="flex justify-between font-bold text-sm md:text-base"><span>{dict.contact.step3.pack_full}</span> <span className="text-primary font-bold text-xs uppercase tracking-wider">{dict.contact.step3.pack_full_sub}</span></div>
+               <p className="text-xs text-muted-foreground mt-1">{dict.contact.step3.pack_full_desc}</p>
              </div>
 
              <div onClick={() => update({ packingLevel: "vip" })} className={cn("cursor-pointer p-4 border rounded-xl transition-all hover:translate-x-1 shadow-[0_0_15px_-5px_transparent] hover:shadow-[0_0_15px_-5px_rgba(220,38,38,0.3)]", data.packingLevel === "vip" ? "border-primary bg-primary/10 shadow-[0_0_15px_-5px_rgba(220,38,38,0.5)]" : "border-white/10 hover:border-white/30")}>
-               <div className="flex justify-between font-bold text-sm md:text-base"><span className="text-primary">VIP White Glove</span> <span className="text-primary font-bold text-xs uppercase tracking-wider">Premium</span></div>
-               <p className="text-xs text-muted-foreground mt-1">Full pack + Unpack + Organization service.</p>
+               <div className="flex justify-between font-bold text-sm md:text-base"><span className="text-primary">{dict.contact.step3.pack_vip}</span> <span className="text-primary font-bold text-xs uppercase tracking-wider">{dict.contact.step3.pack_vip_sub}</span></div>
+               <p className="text-xs text-muted-foreground mt-1">{dict.contact.step3.pack_vip_desc}</p>
              </div>
           </div>
         </div>
 
         <div className="space-y-6">
-           <Label className="text-lg font-bold block mb-4 border-b border-white/10 pb-2">Add-ons</Label>
+           <Label className="text-lg font-bold block mb-4 border-b border-white/10 pb-2">{dict.contact.step3.addons}</Label>
            
            <div className="grid gap-3">
               <div className="flex items-center justify-between p-4 border border-white/10 rounded-xl bg-white/5">
                 <div className="space-y-0.5">
-                  <Label className="text-base">Furniture Disassembly</Label>
-                  <p className="text-xs text-muted-foreground">Beds, Wardrobes, Tables</p>
+                  <Label className="text-base">{dict.contact.step3.disassembly}</Label>
+                  <p className="text-xs text-muted-foreground">{dict.contact.step3.disassembly_desc}</p>
                 </div>
                 <Switch checked={data.disassembly} onCheckedChange={(c) => update({ disassembly: c })} />
               </div>
               
               <div className="flex items-center justify-between p-4 border border-white/10 rounded-xl bg-white/5">
                 <div className="space-y-0.5">
-                  <Label className="text-base">Furniture Assembly</Label>
-                  <p className="text-xs text-muted-foreground">Re-assembly at destination</p>
+                  <Label className="text-base">{dict.contact.step3.assembly}</Label>
+                  <p className="text-xs text-muted-foreground">{dict.contact.step3.assembly_desc}</p>
                 </div>
                 <Switch checked={data.assembly} onCheckedChange={(c) => update({ assembly: c })} />
               </div>
 
               <div className="flex items-center justify-between p-4 border border-white/10 rounded-xl bg-white/5">
                 <div className="space-y-0.5">
-                  <Label className="text-base">Final Cleaning</Label>
-                  <p className="text-xs text-muted-foreground">With handover guarantee</p>
+                  <Label className="text-base">{dict.contact.step3.cleaning}</Label>
+                  <p className="text-xs text-muted-foreground">{dict.contact.step3.cleaning_desc}</p>
                 </div>
                 <Switch checked={data.cleaning} onCheckedChange={(c) => update({ cleaning: c })} />
               </div>
 
               <div className="flex items-center justify-between p-4 border border-white/10 rounded-xl bg-white/5">
                 <div className="space-y-0.5">
-                  <Label className="text-base">Temporary Storage</Label>
-                  <p className="text-xs text-muted-foreground">Secure, climate-controlled</p>
+                  <Label className="text-base">{dict.contact.step3.storage}</Label>
+                  <p className="text-xs text-muted-foreground">{dict.contact.step3.storage_desc}</p>
                 </div>
                 <Switch checked={data.storage} onCheckedChange={(c) => update({ storage: c })} />
               </div>
            </div>
 
            <div className="pt-4">
-              <Label className="mb-2 block">Insurance Value</Label>
+              <Label className="mb-2 block">{dict.contact.step3.insurance}</Label>
               <Select defaultValue={data.insuranceValue} onValueChange={(v) => update({ insuranceValue: v })}>
                 <SelectTrigger className="h-12 bg-white/5 border-white/10"><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="standard">Standard Coverage</SelectItem>
-                  <SelectItem value="medium">Enhanced Coverage</SelectItem>
-                  <SelectItem value="high">Premium Coverage</SelectItem>
+                  <SelectItem value="standard">{dict.contact.step3.ins_standard}</SelectItem>
+                  <SelectItem value="medium">{dict.contact.step3.ins_medium}</SelectItem>
+                  <SelectItem value="high">{dict.contact.step3.ins_high}</SelectItem>
                 </SelectContent>
               </Select>
            </div>
@@ -568,17 +573,17 @@ function Step3({ data, update, onNext, onPrev }: { data: any, update: (d: any) =
 
       <div className="flex justify-between pt-8 border-t border-white/5">
         <Button variant="ghost" onClick={onPrev} className="text-muted-foreground hover:text-white">
-          <ArrowLeft className="mr-2 w-4 h-4" /> Back
+          <ArrowLeft className="mr-2 w-4 h-4" /> {dict.contact.buttons.back}
         </Button>
         <Button onClick={onNext} size="lg" className="bg-primary hover:bg-primary/90 text-white w-full md:w-auto px-8">
-          Final Details <ArrowRight className="ml-2 w-4 h-4" />
+          {dict.contact.buttons.final_details} <ArrowRight className="ml-2 w-4 h-4" />
         </Button>
       </div>
     </motion.div>
   );
 }
 
-function Step4({ data, update, onSubmit, onPrev }: { data: any, update: (d: any) => void, onSubmit: () => void, onPrev: () => void }) {
+function Step4({ data, update, onSubmit, onPrev, dict }: { data: any, update: (d: any) => void, onSubmit: () => void, onPrev: () => void, dict: any }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = () => {
@@ -596,24 +601,24 @@ function Step4({ data, update, onSubmit, onPrev }: { data: any, update: (d: any)
       exit={{ opacity: 0, x: -20 }}
       className="space-y-8 h-full flex flex-col"
     >
-      <StepHeader icon={User} title="Personal Details" desc="Where should we send your quote?" />
+      <StepHeader icon={User} title={dict.contact.step4.title} desc={dict.contact.step4.desc} />
 
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-6">
           <div className="grid grid-cols-4 gap-4">
              <div className="col-span-1">
-               <Label>Title</Label>
+               <Label>{dict.contact.step4.salutation}</Label>
                <Select defaultValue={data.salutation} onValueChange={(v) => update({ salutation: v })}>
                 <SelectTrigger className="bg-white/5 border-white/10 mt-2"><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="mr">Mr.</SelectItem>
-                  <SelectItem value="ms">Ms.</SelectItem>
-                  <SelectItem value="mx">Mx.</SelectItem>
+                  <SelectItem value="mr">{dict.contact.step4.mr}</SelectItem>
+                  <SelectItem value="ms">{dict.contact.step4.ms}</SelectItem>
+                  <SelectItem value="mx">{dict.contact.step4.mx}</SelectItem>
                 </SelectContent>
               </Select>
              </div>
              <div className="col-span-3">
-               <Label>First Name</Label>
+               <Label>{dict.contact.step4.firstname}</Label>
                <Input 
                  value={data.firstName} 
                  onChange={(e) => update({ firstName: e.target.value })} 
@@ -623,7 +628,7 @@ function Step4({ data, update, onSubmit, onPrev }: { data: any, update: (d: any)
           </div>
 
           <div>
-             <Label>Last Name</Label>
+             <Label>{dict.contact.step4.lastname}</Label>
              <Input 
                value={data.lastName} 
                onChange={(e) => update({ lastName: e.target.value })} 
@@ -632,7 +637,7 @@ function Step4({ data, update, onSubmit, onPrev }: { data: any, update: (d: any)
           </div>
 
           <div>
-             <Label>Email Address</Label>
+             <Label>{dict.contact.step4.email}</Label>
              <Input 
                value={data.email} 
                onChange={(e) => update({ email: e.target.value })} 
@@ -642,7 +647,7 @@ function Step4({ data, update, onSubmit, onPrev }: { data: any, update: (d: any)
           </div>
 
           <div>
-             <Label>Phone Number</Label>
+             <Label>{dict.contact.step4.phone}</Label>
              <Input 
                value={data.phone} 
                onChange={(e) => update({ phone: e.target.value })} 
@@ -654,27 +659,27 @@ function Step4({ data, update, onSubmit, onPrev }: { data: any, update: (d: any)
 
         <div className="space-y-6">
           <div className="space-y-2">
-            <Label>Preferred Contact Method</Label>
+            <Label>{dict.contact.step4.preferred_contact}</Label>
             <RadioGroup defaultValue={data.contactPreference} onValueChange={(v) => update({ contactPreference: v })} className="flex flex-col gap-3 mt-2">
               <div className="flex items-center space-x-2 border border-white/10 p-3 rounded-lg hover:bg-white/5 transition-colors">
                 <RadioGroupItem value="email" id="email" />
-                <Label htmlFor="email" className="flex-grow cursor-pointer">Email me the quote</Label>
+                <Label htmlFor="email" className="flex-grow cursor-pointer">{dict.contact.step4.contact_email}</Label>
               </div>
               <div className="flex items-center space-x-2 border border-white/10 p-3 rounded-lg hover:bg-white/5 transition-colors">
                 <RadioGroupItem value="phone" id="phone" />
-                <Label htmlFor="phone" className="flex-grow cursor-pointer">Call me to discuss details</Label>
+                <Label htmlFor="phone" className="flex-grow cursor-pointer">{dict.contact.step4.contact_phone}</Label>
               </div>
               <div className="flex items-center space-x-2 border border-white/10 p-3 rounded-lg hover:bg-white/5 transition-colors">
                 <RadioGroupItem value="whatsapp" id="whatsapp" />
-                <Label htmlFor="whatsapp" className="flex-grow cursor-pointer">Send via WhatsApp</Label>
+                <Label htmlFor="whatsapp" className="flex-grow cursor-pointer">{dict.contact.step4.contact_whatsapp}</Label>
               </div>
             </RadioGroup>
           </div>
 
           <div className="space-y-2">
-            <Label>Additional Remarks / Special Items</Label>
+            <Label>{dict.contact.step4.remarks}</Label>
             <Textarea 
-              placeholder="E.g., Piano, Heavy Safe, Artwork, Narrow Staircase..." 
+              placeholder={dict.contact.step4.remarks_placeholder}
               className="bg-white/5 border-white/10 min-h-[120px]"
               value={data.remarks}
               onChange={(e) => update({ remarks: e.target.value })}
@@ -687,13 +692,13 @@ function Step4({ data, update, onSubmit, onPrev }: { data: any, update: (d: any)
 
       <div className="flex justify-between pt-8 border-t border-white/5">
         <Button variant="ghost" onClick={onPrev} className="text-muted-foreground hover:text-white" disabled={isSubmitting}>
-          <ArrowLeft className="mr-2 w-4 h-4" /> Back
+          <ArrowLeft className="mr-2 w-4 h-4" /> {dict.contact.buttons.back}
         </Button>
         <Button onClick={handleSubmit} size="lg" className="bg-primary hover:bg-primary/90 text-white w-full md:w-auto px-12 text-lg font-bold shadow-[0_0_20px_rgba(220,38,38,0.5)] hover:shadow-[0_0_30px_rgba(220,38,38,0.7)] transition-all" disabled={isSubmitting}>
           {isSubmitting ? (
-             <span className="flex items-center gap-2">Processing...</span>
+             <span className="flex items-center gap-2">{dict.contact.buttons.processing}</span>
           ) : (
-             <span className="flex items-center gap-2">Submit Request <CheckCircle2 className="w-5 h-5" /></span>
+             <span className="flex items-center gap-2">{dict.contact.buttons.submit} <CheckCircle2 className="w-5 h-5" /></span>
           )}
         </Button>
       </div>

@@ -2,34 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useRef } from "react";
-
-const timeline = [
-  {
-    phase: "Phase 01",
-    title: "Consultation & Assessment",
-    desc: "We begin with a thorough digital or in-person survey of your home. Our experts analyze your inventory, identify special requirements, and discuss your timeline constraints."
-  },
-  {
-    phase: "Phase 02",
-    title: "Strategic Planning",
-    desc: "A dedicated move coordinator creates your master plan. This includes route optimization, packing material calculation, and scheduling of specialist teams for items like pianos or art."
-  },
-  {
-    phase: "Phase 03",
-    title: "The Pack",
-    desc: "Our team arrives with premium materials. We label, catalog, and pack every item with precision. Wardrobes are transferred to garment boxes; electronics are anti-static wrapped."
-  },
-  {
-    phase: "Phase 04",
-    title: "Transport",
-    desc: "Your belongings are loaded into our air-ride suspension fleet. You receive a tracking link to monitor the journey in real-time as we move across the Swiss landscape."
-  },
-  {
-    phase: "Phase 05",
-    title: "Arrival & Setup",
-    desc: "We don't just drop boxes. We reassemble furniture, place boxes in correct rooms, and can provide unpacking services to get your new home livable immediately."
-  }
-];
+import { useLanguage } from "@/lib/i18n";
 
 export default function ProcessPage() {
   const containerRef = useRef(null);
@@ -37,6 +10,7 @@ export default function ProcessPage() {
     target: containerRef,
     offset: ["start end", "end start"]
   });
+  const { dict } = useLanguage();
 
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
@@ -50,12 +24,12 @@ export default function ProcessPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-32 text-center max-w-3xl mx-auto"
         >
-          <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-6">The Methodology</span>
+          <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-6">{dict.process.subtitle}</span>
           <h1 className="text-6xl md:text-8xl font-display font-bold uppercase italic mb-8 leading-[0.9]">
-            The <span className="text-primary">Process</span>
+            {dict.process.title.split(' ')[0]} <span className="text-primary">{dict.process.title.split(' ').slice(1).join(' ')}</span>
           </h1>
           <p className="text-xl text-muted-foreground">
-            Precision engineering applied to moving. We've broken down relocation into a science to ensure zero errors.
+            {dict.process.description}
           </p>
         </motion.div>
 
@@ -70,7 +44,7 @@ export default function ProcessPage() {
           </div>
           
           <div className="space-y-32">
-            {timeline.map((item, index) => (
+            {dict.process.steps.map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}

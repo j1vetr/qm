@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Navigation } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
 // More accurate relative coordinates for Swiss cities
 const cities = [
@@ -18,6 +19,7 @@ const cities = [
 
 export default function SwissMap() {
   const [activeCity, setActiveCity] = useState<number | null>(null);
+  const { dict } = useLanguage();
 
   // Define specific connections to create a logical network flow
   const connections = [
@@ -49,13 +51,13 @@ export default function SwissMap() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-4">Network Coverage</span>
+              <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-4">{dict.home.map_subtitle}</span>
               <h2 className="text-4xl md:text-6xl font-display font-bold uppercase italic mb-6">
-                We Cover <br />
-                <span className="text-primary">Every Canton</span>
+                {dict.home.map_title.split(' ').slice(0, 2).join(' ')} <br />
+                <span className="text-primary">{dict.home.map_title.split(' ').slice(2).join(' ')}</span>
               </h2>
               <p className="text-muted-foreground mb-8">
-                Our logistics network spans the entire nation. From the busy streets of Zürich to the quiet valleys of Ticino, we are there.
+                {dict.home.map_desc}
               </p>
               
               <div className="space-y-4">
@@ -70,12 +72,12 @@ export default function SwissMap() {
                     <p className="text-primary text-sm uppercase tracking-wider mb-4">{cities[activeCity].label}</p>
                     <div className="flex items-center gap-2 text-sm text-white/60">
                       <Navigation className="w-4 h-4" />
-                      <span>Daily routes available</span>
+                      <span>{dict.home.daily_routes}</span>
                     </div>
                   </motion.div>
                 ) : (
                   <div className="p-6 border border-white/10 bg-white/5 rounded-lg">
-                    <p className="text-white/40 italic">Hover over a city on the map to view details.</p>
+                    <p className="text-white/40 italic">{dict.home.hover_city}</p>
                   </div>
                 )}
               </div>

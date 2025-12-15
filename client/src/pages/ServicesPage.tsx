@@ -4,47 +4,50 @@ import Footer from "@/components/Footer";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Box, Shield, Clock, Truck, UserCheck, Package, ArrowRight, CheckCircle2 } from "lucide-react";
-
-const allServices = [
-  {
-    icon: Box,
-    title: "Premium Packing",
-    desc: "We don't just throw things in boxes. We architect the safety of your items using premium materials and specialized techniques for fragile items, art, and electronics.",
-    features: ["Custom crating for art", "Anti-static electronic wrapping", "Wardrobe boxes provided"]
-  },
-  {
-    icon: Truck,
-    title: "Secure Transport",
-    desc: "Our fleet represents the pinnacle of logistics technology. Air-ride suspension, GPS tracking, and climate control ensure your belongings travel in first-class comfort.",
-    features: ["Real-time GPS Tracking", "Air-ride suspension trucks", "Climate controlled cargo"]
-  },
-  {
-    icon: Shield,
-    title: "Insurance & Safety",
-    desc: "Peace of mind is part of the package. We offer comprehensive insurance coverage for every step of the journey, backed by Swiss reliability.",
-    features: ["Full value protection", "Zero-deductible options", "Certified handling staff"]
-  },
-  {
-    icon: Clock,
-    title: "Express Relocation",
-    desc: "For those who value time above all else. Our express service guarantees 24-hour relocation within Switzerland for eligible moves.",
-    features: ["Priority scheduling", "Dedicated express team", "Overnight transport options"]
-  },
-  {
-    icon: UserCheck,
-    title: "White Glove Service",
-    desc: "Sit back and relax. Our white-glove service includes full unpacking, furniture assembly, and even home organization so you walk into a ready home.",
-    features: ["Furniture assembly/disassembly", "Home organization", "Debris removal"]
-  },
-  {
-    icon: Package,
-    title: "Storage Solutions",
-    desc: "Need time between homes? Our high-security storage facilities offer a temporary sanctuary for your possessions with 24/7 surveillance.",
-    features: ["Climate-controlled units", "24/7 Video surveillance", "Digital inventory management"]
-  }
-];
+import { useLanguage } from "@/lib/i18n";
 
 export default function ServicesPage() {
+  const { dict } = useLanguage();
+  
+  const allServices = [
+    {
+      icon: Box,
+      title: dict.services.items.packing.title,
+      desc: dict.services.items.packing.desc,
+      features: dict.services.items.packing.features
+    },
+    {
+      icon: Truck,
+      title: dict.services.items.transport.title,
+      desc: dict.services.items.transport.desc,
+      features: dict.services.items.transport.features
+    },
+    {
+      icon: Shield,
+      title: dict.services.items.insurance.title,
+      desc: dict.services.items.insurance.desc,
+      features: dict.services.items.insurance.features
+    },
+    {
+      icon: Clock,
+      title: dict.services.items.express.title,
+      desc: dict.services.items.express.desc,
+      features: dict.services.items.express.features
+    },
+    {
+      icon: UserCheck,
+      title: dict.services.items.whiteglove.title,
+      desc: dict.services.items.whiteglove.desc,
+      features: dict.services.items.whiteglove.features
+    },
+    {
+      icon: Package,
+      title: dict.services.items.storage.title,
+      desc: dict.services.items.storage.desc,
+      features: dict.services.items.storage.features
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -55,12 +58,12 @@ export default function ServicesPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-24 text-center max-w-3xl mx-auto"
         >
-          <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-6">World Class Standards</span>
+          <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-6">{dict.services.subtitle}</span>
           <h1 className="text-6xl md:text-8xl font-display font-bold uppercase italic mb-8 leading-[0.9]">
-            Our <span className="text-primary">Services</span>
+            {dict.services.title.split(' ')[0]} <span className="text-primary">{dict.services.title.split(' ').slice(1).join(' ')}</span>
           </h1>
           <p className="text-xl text-muted-foreground">
-            We offer a comprehensive suite of relocation services designed for the modern individual who refuses to compromise on quality.
+            {dict.services.description}
           </p>
         </motion.div>
 
@@ -112,15 +115,15 @@ export default function ServicesPage() {
           
           <div className="relative z-10 max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-6xl font-display font-bold uppercase italic mb-8">
-              Ready for a <span className="text-primary">Seamless Move?</span>
+              {dict.services.cta_title}
             </h2>
             <p className="text-xl text-muted-foreground mb-10">
-              Stop stressing about logistics. Let us handle the heavy lifting while you focus on your new beginning.
+              {dict.services.cta_desc}
             </p>
             <Link href="/contact">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-xl px-12 py-8 rounded-none skew-x-[-10deg] font-bold shadow-[0_0_30px_-5px_hsl(355,100%,55%)] hover:shadow-[0_0_50px_-5px_hsl(355,100%,55%)] transition-all duration-300">
                 <span className="skew-x-[10deg] flex items-center gap-3">
-                  GET YOUR FREE QUOTE <ArrowRight className="w-6 h-6" />
+                  {dict.services.cta_button} <ArrowRight className="w-6 h-6" />
                 </span>
               </Button>
             </Link>

@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useLanguage } from "@/lib/i18n";
 
 const testimonials = [
   {
@@ -31,6 +32,8 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const { dict } = useLanguage();
+
   return (
     <section className="py-24 bg-background border-y border-white/5">
       <div className="container mx-auto px-6">
@@ -40,13 +43,13 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-4">Testimonials</span>
+            <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-4">{dict.home.testimonials_title}</span>
             <h2 className="text-5xl font-display font-bold uppercase italic leading-tight mb-8">
-              Trusted by <br/>
-              <span className="text-primary">Switzerland</span>
+              {dict.home.trusted_by.split(" ").slice(0, 2).join(" ")} <br/>
+              <span className="text-primary">{dict.home.trusted_by.split(" ").slice(2).join(" ")}</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-md">
-              Don't just take our word for it. Here is what our clients have to say about their relocation experience.
+              {dict.home.testimonials_desc}
             </p>
           </motion.div>
 
