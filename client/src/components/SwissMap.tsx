@@ -2,14 +2,18 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Navigation } from "lucide-react";
 
+// More accurate relative coordinates for Swiss cities
 const cities = [
   { name: "Zürich", x: 65, y: 30, label: "Main Hub" },
   { name: "Geneva", x: 15, y: 75, label: "Western Hub" },
-  { name: "Bern", x: 45, y: 50, label: "Capital" },
-  { name: "Basel", x: 55, y: 15, label: "North Gate" },
+  { name: "Bern", x: 40, y: 50, label: "Capital" },
+  { name: "Basel", x: 45, y: 15, label: "North Gate" },
   { name: "Lugano", x: 75, y: 85, label: "South Conn." },
   { name: "St. Gallen", x: 85, y: 25, label: "East Wing" },
-  { name: "Lucerne", x: 60, y: 55, label: "Central" },
+  { name: "Lucerne", x: 55, y: 45, label: "Central" },
+  { name: "Lausanne", x: 25, y: 65, label: "Vaud" },
+  { name: "Chur", x: 85, y: 55, label: "Grisons" },
+  { name: "Sion", x: 40, y: 80, label: "Valais" }
 ];
 
 export default function SwissMap() {
@@ -67,9 +71,9 @@ export default function SwissMap() {
               viewBox="0 0 100 100"
               className="w-full h-full drop-shadow-[0_0_15px_rgba(220,38,38,0.3)]"
             >
-              {/* Abstract Swiss Shape */}
+              {/* Detailed Swiss Border Shape */}
               <motion.path
-                d="M 15 75 L 25 65 L 20 55 L 30 45 L 40 40 L 55 15 L 75 15 L 85 25 L 90 40 L 95 50 L 85 65 L 75 85 L 55 85 L 40 75 L 30 80 Z"
+                d="M 15 75 L 20 65 L 18 55 L 25 50 L 30 45 L 35 35 L 45 15 L 55 12 L 65 15 L 75 15 L 85 20 L 92 30 L 95 50 L 90 60 L 85 65 L 75 75 L 75 85 L 65 88 L 50 85 L 40 80 L 30 75 L 20 80 L 15 75 Z"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="0.5"
@@ -78,13 +82,34 @@ export default function SwissMap() {
                 whileInView={{ pathLength: 1 }}
                 transition={{ duration: 2, ease: "easeInOut" }}
               />
+
+              {/* Canton Divider Lines (Artistic Interpretation) */}
+              <motion.g
+                 stroke="currentColor"
+                 strokeWidth="0.1"
+                 className="text-white/10"
+                 initial={{ opacity: 0 }}
+                 whileInView={{ opacity: 1 }}
+                 transition={{ delay: 1, duration: 1 }}
+              >
+                  {/* Western Split */}
+                  <path d="M 30 45 L 30 75" /> 
+                  {/* Central Split */}
+                  <path d="M 30 60 L 60 60" />
+                  {/* Eastern Split */}
+                  <path d="M 60 40 L 60 70" />
+                  {/* Northern Arc */}
+                  <path d="M 40 30 Q 55 40 70 30" fill="none" />
+                  {/* Southern Arc */}
+                  <path d="M 40 70 Q 55 60 70 70" fill="none" />
+              </motion.g>
               
               {/* Grid Lines inside map for tech feel */}
-              <pattern id="grid" width="4" height="4" patternUnits="userSpaceOnUse">
-                <path d="M 4 0 L 0 0 0 4" fill="none" stroke="currentColor" strokeWidth="0.1" className="text-white/10" />
+              <pattern id="grid" width="2" height="2" patternUnits="userSpaceOnUse">
+                <path d="M 2 0 L 0 0 0 2" fill="none" stroke="currentColor" strokeWidth="0.05" className="text-white/5" />
               </pattern>
               <path
-                d="M 15 75 L 25 65 L 20 55 L 30 45 L 40 40 L 55 15 L 75 15 L 85 25 L 90 40 L 95 50 L 85 65 L 75 85 L 55 85 L 40 75 L 30 80 Z"
+                d="M 15 75 L 20 65 L 18 55 L 25 50 L 30 45 L 35 35 L 45 15 L 55 12 L 65 15 L 75 15 L 85 20 L 92 30 L 95 50 L 90 60 L 85 65 L 75 75 L 75 85 L 65 88 L 50 85 L 40 80 L 30 75 L 20 80 L 15 75 Z"
                 fill="url(#grid)"
                 className="opacity-50"
               />
@@ -94,7 +119,7 @@ export default function SwissMap() {
                  cities.map((target, j) => {
                    if (i >= j) return null; // Avoid duplicates
                    // Only draw some connections to avoid clutter
-                   if (Math.random() > 0.7) return null;
+                   if (Math.random() > 0.8) return null;
                    
                    return (
                      <motion.line
@@ -104,7 +129,7 @@ export default function SwissMap() {
                         x2={target.x}
                         y2={target.y}
                         stroke="currentColor"
-                        strokeWidth="0.2"
+                        strokeWidth="0.1"
                         className="text-primary/20"
                         initial={{ pathLength: 0, opacity: 0 }}
                         whileInView={{ pathLength: 1, opacity: 1 }}
@@ -128,22 +153,29 @@ export default function SwissMap() {
                   <circle
                     cx={city.x}
                     cy={city.y}
-                    r="1.5"
-                    className="fill-background stroke-primary stroke-[0.5] group-hover:fill-primary transition-colors duration-300"
+                    r="1"
+                    className="fill-background stroke-primary stroke-[0.3] group-hover:fill-primary transition-colors duration-300"
                   />
+                  {/* Pulse Effect */}
                   <circle
                     cx={city.x}
                     cy={city.y}
-                    r="4"
-                    className="fill-primary/20 animate-pulse"
+                    r="3"
+                    className="fill-primary/10 animate-pulse"
                   />
                   
-                  {/* Label */}
-                  <foreignObject x={city.x - 10} y={city.y - 8} width="20" height="6">
-                     <div className="text-[3px] text-center font-bold text-white uppercase bg-black/50 backdrop-blur-sm rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                       {city.name}
-                     </div>
-                  </foreignObject>
+                  {/* Permanent Label */}
+                  <text
+                    x={city.x} 
+                    y={city.y - 3} 
+                    fontSize="2.5"
+                    fontWeight="bold"
+                    fill="white"
+                    textAnchor="middle"
+                    className="font-display uppercase tracking-wider opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-md"
+                  >
+                    {city.name}
+                  </text>
                 </motion.g>
               ))}
             </svg>

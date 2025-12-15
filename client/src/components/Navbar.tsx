@@ -18,6 +18,7 @@ export default function Navbar() {
   }, []);
 
   const links = [
+    { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
     { name: "Process", href: "/process" },
     { name: "About", href: "/about" },
