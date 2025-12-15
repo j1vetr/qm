@@ -75,26 +75,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Floating Elements */}
-      <motion.div 
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-20 right-10 md:right-20 z-20 hidden md:block"
-      >
-        <div className="bg-black/80 backdrop-blur-md border border-white/10 p-6 rounded-lg max-w-xs">
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-primary/20 rounded-full">
-              <MapPin className="text-primary w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Next Destination</p>
-              <p className="text-xl font-bold font-display">Zürich, CH</p>
-              <p className="text-sm text-white/60">Bahnhofstrasse 12</p>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-
       {/* Scroll Indicator */}
       <motion.div 
         style={{ opacity }}
