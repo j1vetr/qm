@@ -126,7 +126,7 @@ export default function Navbar() {
                <img 
                  src={theme === 'light' ? logoLight : logo} 
                  alt="QuickMove Logo" 
-                 className="h-20 w-auto relative z-20 block" 
+                 className="h-14 md:h-20 w-auto relative z-20 block" 
                />
             </div>
           </a>
