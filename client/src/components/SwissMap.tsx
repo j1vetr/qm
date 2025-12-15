@@ -190,7 +190,7 @@ export default function SwissMap() {
                     fontWeight="bold"
                     fill="white"
                     textAnchor="middle"
-                    className="font-display uppercase tracking-wider opacity-60 group-hover:opacity-100 transition-opacity drop-shadow-md"
+                    className="font-display uppercase tracking-wider opacity-100 group-hover:opacity-100 transition-opacity drop-shadow-md"
                   >
                     {city.name}
                   </text>

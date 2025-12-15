@@ -65,7 +65,7 @@ export default function Home() {
                       <h3 className="text-2xl font-bold uppercase italic mb-2">Swiss Excellence</h3>
                       <p className="text-muted-foreground text-sm max-w-md">Our white-glove service isn't an upgrade—it's our standard. We handle your belongings with the care of a curator.</p>
                    </div>
-                   <div className="text-9xl font-display font-black text-white/5 absolute right-0 bottom-0 pointer-events-none select-none">
+                   <div className="text-9xl font-display font-black text-white/20 absolute right-0 bottom-0 pointer-events-none select-none">
                       CH
                    </div>
                 </div>

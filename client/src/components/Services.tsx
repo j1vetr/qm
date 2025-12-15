@@ -67,7 +67,7 @@ export default function Services() {
               {/* Content */}
               <div className="absolute inset-0 z-20 p-8 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
-                  <span className="text-4xl font-display font-bold text-white/20 group-hover:text-primary transition-colors">
+                  <span className="text-4xl font-display font-bold text-white/40 group-hover:text-primary transition-colors">
                     {service.id}
                   </span>
                   <div className="p-3 bg-white/5 backdrop-blur-md rounded-full group-hover:bg-primary group-hover:text-white transition-colors duration-300">
