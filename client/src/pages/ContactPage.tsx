@@ -70,7 +70,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
       
-      <div className="pt-32 pb-24 container mx-auto px-4 md:px-6" ref={topRef}>
+      <div className="pt-48 pb-24 container mx-auto px-4 md:px-6" ref={topRef}>
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -497,7 +497,7 @@ function Step3({ data, update, onNext, onPrev }: { data: any, update: (d: any) =
              </div>
              
              <div onClick={() => update({ packingLevel: "fragile" })} className={cn("cursor-pointer p-4 border rounded-xl transition-all hover:translate-x-1", data.packingLevel === "fragile" ? "border-primary bg-primary/10" : "border-white/10 hover:border-white/30")}>
-               <div className="flex justify-between font-bold text-sm md:text-base"><span>Fragile Only</span> <span className="text-primary font-bold text-xs">+ CHF 350</span></div>
+               <div className="flex justify-between font-bold text-sm md:text-base"><span>Fragile Only</span> <span className="text-primary font-bold text-xs uppercase tracking-wider">Upgrade</span></div>
                <p className="text-xs text-muted-foreground mt-1">We pack glassware, art, and electronics. You pack clothes/books.</p>
              </div>
              
@@ -555,9 +555,9 @@ function Step3({ data, update, onNext, onPrev }: { data: any, update: (d: any) =
               <Select defaultValue={data.insuranceValue} onValueChange={(v) => update({ insuranceValue: v })}>
                 <SelectTrigger className="h-12 bg-white/5 border-white/10"><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="standard">Standard (CHF 20,000)</SelectItem>
-                  <SelectItem value="medium">Enhanced (CHF 50,000)</SelectItem>
-                  <SelectItem value="high">Premium (CHF 100,000+)</SelectItem>
+                  <SelectItem value="standard">Standard Coverage</SelectItem>
+                  <SelectItem value="medium">Enhanced Coverage</SelectItem>
+                  <SelectItem value="high">Premium Coverage</SelectItem>
                 </SelectContent>
               </Select>
            </div>
