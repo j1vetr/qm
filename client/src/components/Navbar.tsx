@@ -187,12 +187,12 @@ export default function Navbar() {
                  {language.toUpperCase()}
                </Button>
              </DropdownMenuTrigger>
-             <DropdownMenuContent align="center" className="bg-black/90 backdrop-blur-xl border-white/10 min-w-[150px]">
+             <DropdownMenuContent align="center" className="bg-black/90 backdrop-blur-xl border-white/10 min-w-[150px] flex flex-col items-center p-2">
                {langs.map((l) => (
                  <DropdownMenuItem 
                    key={l.code} 
                    onClick={() => setLanguage(l.code as any)}
-                   className={`cursor-pointer text-lg py-3 flex items-center gap-3 ${language === l.code ? "text-primary font-bold" : "text-white"}`}
+                   className={`cursor-pointer w-full justify-center text-lg py-3 flex items-center gap-3 ${language === l.code ? "text-primary font-bold bg-white/5" : "text-white hover:bg-white/10"}`}
                  >
                    <div className="scale-125 flex items-center">
                       {getFlag(l.code)}
