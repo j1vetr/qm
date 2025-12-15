@@ -18,7 +18,6 @@ const cities = [
 ];
 
 export default function SwissMap() {
-  const [activeCity, setActiveCity] = useState<number | null>(null);
   const { dict } = useLanguage();
 
   // Define specific connections to create a logical network flow
@@ -61,25 +60,9 @@ export default function SwissMap() {
               </p>
               
               <div className="space-y-4">
-                {activeCity !== null ? (
-                  <motion.div
-                    key="city-detail"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-6 border border-primary/30 bg-primary/5 rounded-lg"
-                  >
-                    <h3 className="text-2xl font-bold font-display text-white mb-2">{cities[activeCity].name}</h3>
-                    <p className="text-primary text-sm uppercase tracking-wider mb-4">{cities[activeCity].label}</p>
-                    <div className="flex items-center gap-2 text-sm text-white/60">
-                      <Navigation className="w-4 h-4" />
-                      <span>{dict.home.daily_routes}</span>
-                    </div>
-                  </motion.div>
-                ) : (
                   <div className="p-6 border border-white/10 bg-white/5 rounded-lg">
                     <p className="text-white/40 italic">{dict.home.hover_city}</p>
                   </div>
-                )}
               </div>
             </motion.div>
           </div>
@@ -158,16 +141,13 @@ export default function SwissMap() {
               {cities.map((city, index) => (
                 <g
                   key={city.name}
-                  onMouseEnter={() => setActiveCity(index)}
-                  onMouseLeave={() => setActiveCity(null)}
-                  onClick={() => setActiveCity(activeCity === index ? null : index)} // Mobile tap support
-                  className="cursor-pointer group"
+                  className="group"
                 >
                   <circle
                     cx={city.x}
                     cy={city.y}
                     r="1"
-                    className="fill-background stroke-primary stroke-[0.3] group-hover:fill-primary transition-colors duration-300"
+                    className="fill-background stroke-primary stroke-[0.3]"
                   />
                   {/* Pulse Effect */}
                   <circle
@@ -185,7 +165,7 @@ export default function SwissMap() {
                     fontWeight="bold"
                     fill="white"
                     textAnchor="middle"
-                    className="font-display uppercase tracking-wider opacity-100 group-hover:opacity-100 transition-opacity drop-shadow-md"
+                    className="font-display uppercase tracking-wider opacity-100 drop-shadow-md"
                   >
                     {city.name}
                   </text>
