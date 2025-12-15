@@ -93,12 +93,12 @@ export default function SwissMap() {
               {/* Detailed Swiss Border Shape */}
               <motion.path
                 d="M 15 75 L 20 65 L 18 55 L 25 50 L 30 45 L 35 35 L 45 15 L 55 12 L 65 15 L 75 15 L 85 20 L 92 30 L 95 50 L 90 60 L 85 65 L 75 75 L 75 85 L 65 88 L 50 85 L 40 80 L 30 75 L 20 80 L 15 75 Z"
-                fill="none"
+                fill="rgba(255,255,255,0.03)"
                 stroke="currentColor"
                 strokeWidth="0.5"
                 className="text-white/20"
-                initial={{ pathLength: 0 }}
-                whileInView={{ pathLength: 1 }}
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: 1 }}
                 transition={{ duration: 2, ease: "easeInOut" }}
               />
 
