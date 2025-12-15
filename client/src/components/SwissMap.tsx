@@ -84,7 +84,7 @@ export default function SwissMap() {
             </motion.div>
           </div>
 
-          <div className="md:w-2/3 w-full h-[500px] md:h-auto md:aspect-[4/3] relative">
+          <div className="md:w-2/3 w-full h-[650px] md:h-auto md:aspect-[4/3] relative -mx-6 md:mx-0 scale-110 md:scale-100">
             {/* Stylized Switzerland Map SVG */}
             <svg
               viewBox="0 0 100 100"
