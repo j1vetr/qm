@@ -66,7 +66,7 @@ export default function SwissMap() {
                     key="city-detail"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-6 border border-primary/30 bg-primary/5 backdrop-blur-md rounded-lg"
+                    className="p-6 border border-primary/30 bg-primary/5 rounded-lg"
                   >
                     <h3 className="text-2xl font-bold font-display text-white mb-2">{cities[activeCity].name}</h3>
                     <p className="text-primary text-sm uppercase tracking-wider mb-4">{cities[activeCity].label}</p>
@@ -168,6 +168,7 @@ export default function SwissMap() {
                   transition={{ delay: 1 + (index * 0.1) }}
                   onMouseEnter={() => setActiveCity(index)}
                   onMouseLeave={() => setActiveCity(null)}
+                  onClick={() => setActiveCity(activeCity === index ? null : index)} // Mobile tap support
                   className="cursor-pointer group"
                 >
                   <circle
