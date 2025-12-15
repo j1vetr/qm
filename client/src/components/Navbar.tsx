@@ -173,14 +173,14 @@ export default function Navbar() {
            <DropdownMenu>
              <DropdownMenuTrigger asChild>
                <Button variant="ghost" className="text-white font-bold flex items-center gap-3 px-3 h-12 text-lg">
-                 <div className="scale-125 flex items-center">
+                 <div className="scale-150 flex items-center">
                     {getFlag(language)}
                  </div>
                  <span className="opacity-50 font-light">|</span>
                  {language.toUpperCase()}
                </Button>
              </DropdownMenuTrigger>
-             <DropdownMenuContent align="end" className="bg-black/90 backdrop-blur-xl border-white/10 min-w-[150px]">
+             <DropdownMenuContent align="center" className="bg-black/90 backdrop-blur-xl border-white/10 min-w-[150px]">
                {langs.map((l) => (
                  <DropdownMenuItem 
                    key={l.code} 
