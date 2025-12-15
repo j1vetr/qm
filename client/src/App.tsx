@@ -13,9 +13,12 @@ import AboutPage from "@/pages/AboutPage";
 import PrivacyPage from "@/pages/PrivacyPage";
 import TermsPage from "@/pages/TermsPage";
 import ScrollToTop from "@/components/ScrollToTop";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
 // Wrapper to handle scroll on route change
 function Router() {
+  useDocumentTitle();
+  
   return (
     <>
       <ScrollToTop />
