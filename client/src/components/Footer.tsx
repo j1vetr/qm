@@ -1,10 +1,12 @@
+import logo from "@assets/qm_logo_1765811309290.png";
+
 export default function Footer() {
   return (
     <footer className="bg-black py-12 border-t border-white/10">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-2xl font-bold font-display tracking-tighter italic">
-            QUICK<span className="text-primary">MOVE</span>.CH
+          <div className="opacity-80 hover:opacity-100 transition-opacity">
+            <img src={logo} alt="QuickMove Logo" className="h-10 w-auto grayscale hover:grayscale-0 transition-all" />
           </div>
           
           <div className="flex gap-8 text-sm text-muted-foreground">

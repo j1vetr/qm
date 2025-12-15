@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import logo from "@assets/qm_logo_1765811309290.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,8 +35,47 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/">
-          <a className="text-2xl font-bold font-display tracking-tighter italic z-50 relative">
-            QUICK<span className="text-primary">MOVE</span>.CH
+          <a className="relative z-50 group">
+            {/* Logo Container with Flowing Border Animation */}
+            <div className="relative p-3 rounded-xl overflow-hidden">
+               {/* Background for contrast */}
+               <div className="absolute inset-0 bg-black/40 backdrop-blur-sm z-0" />
+               
+               {/* Animated Road Lane Border */}
+               <svg className="absolute inset-0 w-full h-full pointer-events-none z-10">
+                  <motion.rect
+                    x="2" y="2" 
+                    width="calc(100% - 4px)" 
+                    height="calc(100% - 4px)" 
+                    rx="10" 
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeDasharray="12 8"
+                    strokeOpacity="0.3"
+                  />
+                  <motion.rect
+                    x="2" y="2" 
+                    width="calc(100% - 4px)" 
+                    height="calc(100% - 4px)" 
+                    rx="10" 
+                    fill="none"
+                    stroke="hsl(355 100% 55%)"
+                    strokeWidth="2"
+                    strokeDasharray="12 8"
+                    initial={{ strokeDashoffset: 0 }}
+                    animate={{ strokeDashoffset: -40 }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                  />
+               </svg>
+
+               {/* Logo Image */}
+               <img 
+                 src={logo} 
+                 alt="QuickMove Logo" 
+                 className="h-12 w-auto relative z-20 block" 
+               />
+            </div>
           </a>
         </Link>
 
