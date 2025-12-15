@@ -52,11 +52,29 @@ export default function Hero() {
             </motion.div> 
             <motion.span 
               className="inline-block pr-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50"
-              initial={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" }}
-              animate={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
-              transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.15,
+                    delayChildren: 0.5
+                  }
+                }
+              }}
             >
-              {dict.hero.title_forward}
+              {Array.from(dict.hero.title_forward as string).map((char, index) => (
+                <motion.span
+                  key={index}
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1 }
+                  }}
+                >
+                  {char}
+                </motion.span>
+              ))}
             </motion.span>
           </h1>
 
