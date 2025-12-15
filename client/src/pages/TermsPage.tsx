@@ -35,15 +35,15 @@ export default function TermsPage() {
           transition={{ delay: 0.1 }}
           className="prose prose-invert max-w-none space-y-12"
         >
-          <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.terms.agreement.title}</h2>
+          <section className="p-8 border border-border dark:border-white/10 bg-card rounded-xl">
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-foreground dark:text-white">{dict.terms.agreement.title}</h2>
             <p className="text-muted-foreground leading-relaxed">
               {dict.terms.agreement.text}
             </p>
           </section>
 
-          <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.terms.services.title}</h2>
+          <section className="p-8 border border-border dark:border-white/10 bg-card rounded-xl">
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-foreground dark:text-white">{dict.terms.services.title}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               {dict.terms.services.text1}
             </p>
@@ -52,8 +52,8 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.terms.obligations.title}</h2>
+          <section className="p-8 border border-border dark:border-white/10 bg-card rounded-xl">
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-foreground dark:text-white">{dict.terms.obligations.title}</h2>
             <p className="text-muted-foreground leading-relaxed">
               {dict.terms.obligations.text}
             </p>
@@ -64,8 +64,8 @@ export default function TermsPage() {
             </ul>
           </section>
 
-          <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.terms.liability.title}</h2>
+          <section className="p-8 border border-border dark:border-white/10 bg-card rounded-xl">
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-foreground dark:text-white">{dict.terms.liability.title}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               <strong>{dict.terms.liability.standard_title}</strong> {dict.terms.liability.standard_text}
             </p>
@@ -74,15 +74,15 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.terms.cancellation.title}</h2>
+          <section className="p-8 border border-border dark:border-white/10 bg-card rounded-xl">
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-foreground dark:text-white">{dict.terms.cancellation.title}</h2>
             <p className="text-muted-foreground leading-relaxed">
               {dict.terms.cancellation.text}
             </p>
           </section>
 
-          <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.terms.law.title}</h2>
+          <section className="p-8 border border-border dark:border-white/10 bg-card rounded-xl">
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-foreground dark:text-white">{dict.terms.law.title}</h2>
             <p className="text-muted-foreground leading-relaxed">
               {dict.terms.law.text}
             </p>

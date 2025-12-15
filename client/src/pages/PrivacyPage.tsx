@@ -41,29 +41,29 @@ export default function PrivacyPage() {
           transition={{ delay: 0.1 }}
           className="prose prose-invert max-w-none space-y-12"
         >
-          <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.privacy.intro.title}</h2>
+          <section className="p-8 border border-border dark:border-white/10 bg-card rounded-xl">
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-foreground dark:text-white">{dict.privacy.intro.title}</h2>
             <p className="text-muted-foreground leading-relaxed">
               {dict.privacy.intro.text}
             </p>
           </section>
 
-          <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.privacy.data.title}</h2>
+          <section className="p-8 border border-border dark:border-white/10 bg-card rounded-xl">
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-foreground dark:text-white">{dict.privacy.data.title}</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               {dict.privacy.data.text}
             </p>
             <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
               {getDataItems().map((item: any, index: number) => (
                 <li key={index}>
-                  <strong className="text-white">{item.title}</strong> {item.text}
+                  <strong className="text-foreground dark:text-white">{item.title}</strong> {item.text}
                 </li>
               ))}
             </ul>
           </section>
 
-          <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.privacy.usage.title}</h2>
+          <section className="p-8 border border-border dark:border-white/10 bg-card rounded-xl">
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-foreground dark:text-white">{dict.privacy.usage.title}</h2>
             <p className="text-muted-foreground leading-relaxed">
               {dict.privacy.usage.text}
             </p>
@@ -74,15 +74,15 @@ export default function PrivacyPage() {
             </ul>
           </section>
 
-          <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.privacy.security.title}</h2>
+          <section className="p-8 border border-border dark:border-white/10 bg-card rounded-xl">
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-foreground dark:text-white">{dict.privacy.security.title}</h2>
             <p className="text-muted-foreground leading-relaxed">
               {dict.privacy.security.text}
             </p>
           </section>
 
-          <section className="p-8 border border-white/10 bg-card rounded-xl">
-            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-white">{dict.privacy.contact.title}</h2>
+          <section className="p-8 border border-border dark:border-white/10 bg-card rounded-xl">
+            <h2 className="text-2xl font-bold font-display uppercase italic mb-4 text-foreground dark:text-white">{dict.privacy.contact.title}</h2>
             <p className="text-muted-foreground leading-relaxed">
               {dict.privacy.contact.text}
               <br /><br />
