@@ -125,7 +125,7 @@ export default function Navbar() {
                <img 
                  src={logo} 
                  alt="QuickMove Logo" 
-                 className="h-20 w-auto relative z-20 block dark:invert-0 invert" 
+                 className="h-20 w-auto relative z-20 block" 
                />
             </div>
           </a>

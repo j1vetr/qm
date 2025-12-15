@@ -12,7 +12,7 @@ export default function Hero() {
   const { dict } = useLanguage();
 
   return (
-    <div className="relative h-screen w-full overflow-hidden flex items-center justify-center">
+    <div className="relative h-screen w-full overflow-hidden flex items-center justify-center dark">
       {/* Background Parallax */}
       <motion.div 
         style={{ y }}

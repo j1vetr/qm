@@ -21,7 +21,7 @@ export default function Footer() {
                 <img 
                   src={logo} 
                   alt="QuickMove Logo" 
-                  className="h-24 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300 dark:invert-0 invert" 
+                  className="h-24 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300" 
                 />
               </a>
             </Link>

@@ -35,7 +35,7 @@ export default function Testimonials() {
   const { dict } = useLanguage();
 
   return (
-    <section className="py-24 bg-background border-y border-white/5">
+    <section className="py-24 bg-background border-y border-border">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -63,7 +63,7 @@ export default function Testimonials() {
               <CarouselContent>
                 {testimonials.map((t, i) => (
                   <CarouselItem key={i}>
-                    <div className="bg-card border border-white/10 p-6 md:p-12 relative overflow-hidden group h-full">
+                    <div className="bg-card border border-border p-6 md:p-12 relative overflow-hidden group h-full">
                       <div className="absolute top-0 right-0 p-8 opacity-10 font-display font-black text-9xl leading-none select-none">
                         "
                       </div>

@@ -39,7 +39,7 @@ export default function SwissMap() {
   ];
 
   return (
-    <section className="py-24 bg-card relative overflow-hidden">
+    <section className="py-24 bg-card relative overflow-hidden dark">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-background to-background" />
       
       <div className="container mx-auto px-6 relative z-10">
