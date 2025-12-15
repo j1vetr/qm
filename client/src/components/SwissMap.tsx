@@ -52,11 +52,11 @@ export default function SwissMap() {
               viewport={{ once: true }}
             >
               <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-4">{dict.home.map_subtitle}</span>
-              <h2 className="text-4xl md:text-6xl font-display font-bold uppercase italic mb-6">
+              <h2 className="text-4xl md:text-6xl font-display font-bold uppercase italic mb-6 text-white">
                 {dict.home.map_title.split(' ').slice(0, 2).join(' ')} <br />
                 <span className="text-primary">{dict.home.map_title.split(' ').slice(2).join(' ')}</span>
               </h2>
-              <p className="text-muted-foreground mb-8">
+              <p className="text-muted-foreground mb-8 text-white/70">
                 {dict.home.map_desc}
               </p>
               

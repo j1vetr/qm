@@ -29,9 +29,9 @@ export default function AboutPage() {
             <p>{dict.about.p2}</p>
             <p>{dict.about.p3}</p>
           </div>
-          <div className="relative h-[400px] bg-card border border-white/10 p-8 flex items-center justify-center">
+          <div className="relative h-[400px] bg-muted dark:bg-card border border-border dark:border-white/10 p-8 flex items-center justify-center">
              <div className="text-center">
-                <div className="text-8xl font-display font-bold text-white mb-2">100%</div>
+                <div className="text-8xl font-display font-bold text-foreground dark:text-white mb-2">100%</div>
                 <div className="text-primary uppercase tracking-widest font-bold">{dict.about.stat_satisfaction}</div>
              </div>
              {/* Decorative Elements */}
@@ -46,8 +46,8 @@ export default function AboutPage() {
             dict.about.vision,
             dict.about.values
           ].map((item, i) => (
-             <div key={i} className="bg-card border border-white/5 p-8 hover:border-primary/30 transition-colors">
-               <h3 className="text-2xl font-display font-bold uppercase mb-4 text-white">{item.title}</h3>
+             <div key={i} className="bg-card border border-border dark:border-white/5 p-8 hover:border-primary/30 transition-colors">
+               <h3 className="text-2xl font-display font-bold uppercase mb-4 text-foreground dark:text-white">{item.title}</h3>
                <p className="text-muted-foreground">{item.text}</p>
              </div>
           ))}

@@ -93,13 +93,13 @@ export default function ServicesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group bg-card border border-white/5 p-8 hover:border-primary/50 transition-all duration-500 hover:bg-white/5 hover:-translate-y-2 flex flex-col"
+              className="group bg-card border border-border dark:border-white/5 p-8 hover:border-primary/50 transition-all duration-500 hover:bg-black/5 dark:hover:bg-white/5 hover:-translate-y-2 flex flex-col"
             >
               <div className="flex items-start justify-between mb-8">
-                <div className="p-4 bg-white/5 rounded-full group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                <div className="p-4 bg-black/5 dark:bg-white/5 rounded-full group-hover:bg-primary group-hover:text-white transition-colors duration-500">
                   <service.icon className="w-8 h-8" />
                 </div>
-                <span className="font-display font-bold text-white/5 text-5xl group-hover:text-white/10 transition-colors">0{index + 1}</span>
+                <span className="font-display font-bold text-black/5 dark:text-white/5 text-5xl group-hover:text-black/10 dark:group-hover:text-white/10 transition-colors">0{index + 1}</span>
               </div>
               
               <h3 className="text-2xl font-display font-bold uppercase mb-4 group-hover:text-primary transition-colors">{service.title}</h3>
@@ -107,10 +107,10 @@ export default function ServicesPage() {
                 {service.desc}
               </p>
               
-              <div className="border-t border-white/5 pt-6 mt-auto">
+              <div className="border-t border-border dark:border-white/5 pt-6 mt-auto">
                 <ul className="space-y-3">
                   {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm font-medium text-white/60 group-hover:text-white transition-colors">
+                    <li key={i} className="flex items-center gap-3 text-sm font-medium text-muted-foreground dark:text-white/60 group-hover:text-foreground dark:group-hover:text-white transition-colors">
                       <CheckCircle2 className="w-4 h-4 text-primary" />
                       {feature}
                     </li>

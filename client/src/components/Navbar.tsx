@@ -4,6 +4,7 @@ import { Menu, X, ArrowRight, Globe, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import logo from "@assets/Design_1765834372701.png";
+import logoLight from "@assets/designlogo_1765837098234.png";
 import { useLanguage } from "@/lib/i18n";
 import { useTheme } from "@/components/theme-provider";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -123,7 +124,7 @@ export default function Navbar() {
 
                {/* Logo Image */}
                <img 
-                 src={logo} 
+                 src={theme === 'light' ? logoLight : logo} 
                  alt="QuickMove Logo" 
                  className="h-20 w-auto relative z-20 block" 
                />

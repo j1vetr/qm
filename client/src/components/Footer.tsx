@@ -1,10 +1,13 @@
 import { useLanguage } from "@/lib/i18n";
 import logo from "@assets/Design_1765834372701.png";
+import logoLight from "@assets/designlogo_1765837098234.png";
 import { Link } from "wouter";
 import { Facebook, Instagram, Linkedin, Twitter, Heart } from "lucide-react";
+import { useTheme } from "./theme-provider";
 
 export default function Footer() {
   const { dict } = useLanguage();
+  const { theme } = useTheme();
   
   return (
     <footer className="bg-background border-t border-border pt-24 pb-12 relative overflow-hidden">
@@ -19,7 +22,7 @@ export default function Footer() {
             <Link href="/">
               <a className="inline-block mb-8 group">
                 <img 
-                  src={logo} 
+                  src={theme === 'light' ? logoLight : logo} 
                   alt="QuickMove Logo" 
                   className="h-24 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300" 
                 />

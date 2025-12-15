@@ -80,10 +80,10 @@ export default function Testimonials() {
                       
                       <div className="flex items-center gap-4">
                         <Avatar className="h-12 w-12 border-2 border-primary">
-                          <AvatarFallback className="bg-muted text-white font-bold">{t.initials}</AvatarFallback>
+                          <AvatarFallback className="bg-muted text-foreground font-bold">{t.initials}</AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="font-bold text-white uppercase tracking-wider">{t.name}</p>
+                          <p className="font-bold text-foreground uppercase tracking-wider">{t.name}</p>
                           <p className="text-sm text-primary">{t.role}</p>
                         </div>
                       </div>
