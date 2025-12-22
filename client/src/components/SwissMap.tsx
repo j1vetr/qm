@@ -22,17 +22,17 @@ const connections = [
   [9, 4], [6, 4], [8, 4],
 ];
 
-const stats = [
-  { icon: Truck, value: "2,847", label: "Taşınma", color: "from-blue-500 to-cyan-500" },
-  { icon: MapPin, value: "26", label: "Kanton", color: "from-green-500 to-emerald-500" },
-  { icon: Users, value: "98%", label: "Memnuniyet", color: "from-purple-500 to-pink-500" },
-  { icon: Clock, value: "24h", label: "Teklif Süresi", color: "from-orange-500 to-amber-500" },
-];
-
 export default function SwissMap() {
   const { dict } = useLanguage();
   const [activeTrucks, setActiveTrucks] = useState<number[]>([0, 3, 7]);
   const [hoveredCity, setHoveredCity] = useState<string | null>(null);
+
+  const stats = [
+    { icon: Truck, value: "2,847", label: dict.home.map_stats.moves, color: "from-blue-500 to-cyan-500" },
+    { icon: MapPin, value: "26", label: dict.home.map_stats.cantons, color: "from-green-500 to-emerald-500" },
+    { icon: Users, value: "98%", label: dict.home.map_stats.satisfaction, color: "from-purple-500 to-pink-500" },
+    { icon: Clock, value: "24h", label: dict.home.map_stats.quote_time, color: "from-orange-500 to-amber-500" },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -120,7 +120,7 @@ export default function SwissMap() {
               className="bg-green-500/20 border border-green-500/50 rounded-lg px-4 py-2 flex items-center gap-2"
             >
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-green-400 text-sm font-medium">31 Aktif Taşınma</span>
+              <span className="text-green-400 text-sm font-medium">31 {dict.home.map_labels.active_moves}</span>
             </motion.div>
           </div>
 
@@ -132,12 +132,12 @@ export default function SwissMap() {
               className="bg-primary/20 border border-primary/50 rounded-lg px-4 py-2 flex items-center gap-2"
             >
               <Shield className="w-4 h-4 text-primary" />
-              <span className="text-primary text-sm font-medium">%100 Sigortalı</span>
+              <span className="text-primary text-sm font-medium">{dict.home.map_labels.fully_insured}</span>
             </motion.div>
           </div>
 
           <div className="bg-gradient-to-b from-white/5 to-transparent rounded-2xl border border-white/10 p-4 md:p-8">
-            <div className="relative aspect-[16/10] md:aspect-[2/1]">
+            <div className="relative aspect-[16/9] md:aspect-[21/9]">
               <svg
                 viewBox="0 0 100 100"
                 className="w-full h-full"
@@ -322,7 +322,7 @@ export default function SwissMap() {
                             fill="white"
                             textAnchor="middle"
                           >
-                            {city.activeJobs} aktif iş
+                            {city.activeJobs} {dict.home.map_labels.active_jobs}
                           </text>
                         </motion.g>
                       )}
@@ -334,22 +334,22 @@ export default function SwissMap() {
               <div className="absolute bottom-2 left-2 md:bottom-4 md:left-4 flex items-center gap-4 text-xs text-white/50">
                 <div className="flex items-center gap-1.5">
                   <span className="w-3 h-3 rounded-full bg-primary" />
-                  <span>Ana Merkez</span>
+                  <span>{dict.home.map_labels.main_hub}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-white" />
-                  <span>Hizmet Noktası</span>
+                  <span>{dict.home.map_labels.service_point}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  <span>Aktif</span>
+                  <span>{dict.home.map_labels.active}</span>
                 </div>
               </div>
 
               <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4">
                 <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/10">
                   <CheckCircle className="w-3 h-3 text-green-500" />
-                  <span className="text-xs text-white/70">Tüm İsviçre'de Hizmet</span>
+                  <span className="text-xs text-white/70">{dict.home.map_labels.all_switzerland}</span>
                 </div>
               </div>
             </div>
@@ -366,8 +366,8 @@ export default function SwissMap() {
                 <Truck className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <div className="text-white font-bold">Express Teslimat</div>
-                <div className="text-white/50 text-sm">Aynı gün hizmet</div>
+                <div className="text-white font-bold">{dict.home.map_labels.express_delivery}</div>
+                <div className="text-white/50 text-sm">{dict.home.map_labels.same_day}</div>
               </div>
             </motion.div>
 
@@ -382,8 +382,8 @@ export default function SwissMap() {
                 <Package className="w-6 h-6 text-green-500" />
               </div>
               <div>
-                <div className="text-white font-bold">Profesyonel Paketleme</div>
-                <div className="text-white/50 text-sm">Özel koruma</div>
+                <div className="text-white font-bold">{dict.home.map_labels.pro_packing}</div>
+                <div className="text-white/50 text-sm">{dict.home.map_labels.special_care}</div>
               </div>
             </motion.div>
 
@@ -398,8 +398,8 @@ export default function SwissMap() {
                 <Star className="w-6 h-6 text-purple-500" />
               </div>
               <div>
-                <div className="text-white font-bold">Premium Hizmet</div>
-                <div className="text-white/50 text-sm">VIP taşınma</div>
+                <div className="text-white font-bold">{dict.home.map_labels.premium_service}</div>
+                <div className="text-white/50 text-sm">{dict.home.map_labels.vip_moving}</div>
               </div>
             </motion.div>
           </div>
