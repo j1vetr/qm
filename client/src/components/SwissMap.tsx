@@ -1,177 +1,407 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Navigation } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Truck, Package, Clock, Shield, MapPin, Users, Star, CheckCircle } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 
-// More accurate relative coordinates for Swiss cities
 const cities = [
-  { name: "Zürich", x: 65, y: 30, label: "Main Hub" },
-  { name: "Geneva", x: 15, y: 75, label: "Western Hub" },
-  { name: "Bern", x: 40, y: 50, label: "Capital" },
-  { name: "Basel", x: 45, y: 15, label: "North Gate" },
-  { name: "Lugano", x: 75, y: 85, label: "South Conn." },
-  { name: "St. Gallen", x: 85, y: 25, label: "East Wing" },
-  { name: "Lucerne", x: 55, y: 45, label: "Central" },
-  { name: "Lausanne", x: 25, y: 65, label: "Vaud" },
-  { name: "Chur", x: 85, y: 55, label: "Grisons" },
-  { name: "Sion", x: 40, y: 80, label: "Valais" }
+  { name: "Zürich", x: 65, y: 30, isHub: true, activeJobs: 8 },
+  { name: "Geneva", x: 15, y: 75, isHub: true, activeJobs: 5 },
+  { name: "Bern", x: 40, y: 50, isHub: true, activeJobs: 4 },
+  { name: "Basel", x: 45, y: 15, isHub: false, activeJobs: 3 },
+  { name: "Lugano", x: 75, y: 85, isHub: false, activeJobs: 2 },
+  { name: "St. Gallen", x: 85, y: 25, isHub: false, activeJobs: 2 },
+  { name: "Lucerne", x: 55, y: 45, isHub: false, activeJobs: 3 },
+  { name: "Lausanne", x: 25, y: 65, isHub: false, activeJobs: 2 },
+  { name: "Chur", x: 85, y: 55, isHub: false, activeJobs: 1 },
+  { name: "Sion", x: 40, y: 80, isHub: false, activeJobs: 1 }
+];
+
+const connections = [
+  [0, 3], [0, 2], [0, 5], [0, 6], [0, 8],
+  [2, 1], [2, 3], [2, 7], [1, 7], [1, 9],
+  [9, 4], [6, 4], [8, 4],
+];
+
+const stats = [
+  { icon: Truck, value: "2,847", label: "Taşınma", color: "from-blue-500 to-cyan-500" },
+  { icon: MapPin, value: "26", label: "Kanton", color: "from-green-500 to-emerald-500" },
+  { icon: Users, value: "98%", label: "Memnuniyet", color: "from-purple-500 to-pink-500" },
+  { icon: Clock, value: "24h", label: "Teklif Süresi", color: "from-orange-500 to-amber-500" },
 ];
 
 export default function SwissMap() {
   const { dict } = useLanguage();
+  const [activeTrucks, setActiveTrucks] = useState<number[]>([0, 3, 7]);
+  const [hoveredCity, setHoveredCity] = useState<string | null>(null);
 
-  // Define specific connections to create a logical network flow
-  const connections = [
-    [0, 3], // Zurich - Basel
-    [0, 2], // Zurich - Bern
-    [0, 5], // Zurich - St Gallen
-    [0, 6], // Zurich - Lucerne
-    [0, 8], // Zurich - Chur
-    [2, 1], // Bern - Geneva
-    [2, 3], // Bern - Basel
-    [2, 7], // Bern - Lausanne
-    [1, 7], // Geneva - Lausanne
-    [1, 9], // Geneva - Sion
-    [9, 4], // Sion - Lugano (simulated route)
-    [6, 4], // Lucerne - Lugano
-    [8, 4], // Chur - Lugano
-  ];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTrucks(prev => {
+        const newTrucks = [...prev];
+        const randomIndex = Math.floor(Math.random() * newTrucks.length);
+        newTrucks[randomIndex] = Math.floor(Math.random() * connections.length);
+        return newTrucks;
+      });
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="py-24 bg-card relative overflow-hidden dark">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-background to-background" />
       
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-primary/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              opacity: [0.2, 0.5, 0.2],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </div>
+      
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row gap-12 items-center">
-          
-          <div className="md:w-1/3">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-4">{dict.home.map_subtitle}</span>
+          <h2 className="text-4xl md:text-6xl font-display font-bold uppercase italic mb-4 text-white">
+            {dict.home.map_title.split(' ').slice(0, 2).join(' ')} <span className="text-primary">{dict.home.map_title.split(' ').slice(2).join(' ')}</span>
+          </h2>
+          <p className="text-white/60 max-w-2xl mx-auto">
+            {dict.home.map_desc}
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          {stats.map((stat, index) => (
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="relative group"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur-xl -z-10" 
+                   style={{ background: `linear-gradient(135deg, var(--tw-gradient-from), var(--tw-gradient-to))` }} />
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center hover:border-primary/50 transition-all duration-300 hover:bg-white/10">
+                <div className={`w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-r ${stat.color} flex items-center justify-center`}>
+                  <stat.icon className="w-6 h-6 text-white" />
+                </div>
+                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-white/50 text-sm uppercase tracking-wider">{stat.label}</div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="relative">
+          <div className="absolute -top-4 left-4 md:left-8 z-20">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              className="bg-green-500/20 border border-green-500/50 rounded-lg px-4 py-2 flex items-center gap-2"
             >
-              <span className="text-primary font-bold tracking-[0.2em] uppercase block mb-4">{dict.home.map_subtitle}</span>
-              <h2 className="text-4xl md:text-6xl font-display font-bold uppercase italic mb-6 text-white">
-                {dict.home.map_title.split(' ').slice(0, 2).join(' ')} <br />
-                <span className="text-primary">{dict.home.map_title.split(' ').slice(2).join(' ')}</span>
-              </h2>
-              <p className="text-muted-foreground mb-8 text-white/70">
-                {dict.home.map_desc}
-              </p>
-              
-              <div className="space-y-4">
-                  <div className="p-6 border border-white/10 bg-white/5 rounded-lg">
-                    <p className="text-white/40 italic">{dict.home.hover_city}</p>
-                  </div>
-              </div>
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+              <span className="text-green-400 text-sm font-medium">31 Aktif Taşınma</span>
             </motion.div>
           </div>
 
-          <div className="md:w-2/3 w-full h-[650px] md:h-auto md:aspect-[4/3] relative -mx-6 md:mx-0 scale-110 md:scale-100 drop-shadow-[0_0_15px_hsl(215,100%,50%,0.3)]">
-            {/* Stylized Switzerland Map SVG */}
-            <svg
-              viewBox="0 0 100 100"
-              className="w-full h-full"
-              preserveAspectRatio="xMidYMid meet"
+          <div className="absolute -top-4 right-4 md:right-8 z-20">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-primary/20 border border-primary/50 rounded-lg px-4 py-2 flex items-center gap-2"
             >
-              {/* Detailed Swiss Border Shape - Static Path */}
-              <path
-                d="M 15 75 L 20 65 L 18 55 L 25 50 L 30 45 L 35 35 L 45 15 L 55 12 L 65 15 L 75 15 L 85 20 L 92 30 L 95 50 L 90 60 L 85 65 L 75 75 L 75 85 L 65 88 L 50 85 L 40 80 L 30 75 L 20 80 L 15 75 Z"
-                fill="rgba(255,255,255,0.05)"
-                stroke="currentColor"
-                strokeWidth="0.5"
-                className="text-white/30"
-              />
+              <Shield className="w-4 h-4 text-primary" />
+              <span className="text-primary text-sm font-medium">%100 Sigortalı</span>
+            </motion.div>
+          </div>
 
-              {/* Canton Divider Lines (Artistic Interpretation) - Static */}
-              <g
-                 stroke="currentColor"
-                 strokeWidth="0.1"
-                 className="text-white/20"
+          <div className="bg-gradient-to-b from-white/5 to-transparent rounded-2xl border border-white/10 p-4 md:p-8">
+            <div className="relative aspect-[16/10] md:aspect-[2/1]">
+              <svg
+                viewBox="0 0 100 100"
+                className="w-full h-full"
+                preserveAspectRatio="xMidYMid meet"
               >
-                  {/* Western Split */}
-                  <path d="M 30 45 L 30 75" /> 
-                  {/* Central Split */}
-                  <path d="M 30 60 L 60 60" />
-                  {/* Eastern Split */}
-                  <path d="M 60 40 L 60 70" />
-                  {/* Northern Arc */}
-                  <path d="M 40 30 Q 55 40 70 30" fill="none" />
-                  {/* Southern Arc */}
-                  <path d="M 40 70 Q 55 60 70 70" fill="none" />
-              </g>
-              
-              {/* Connections with Flowing Dash Animation */}
-              {connections.map(([startIdx, endIdx], i) => {
-                 const start = cities[startIdx];
-                 const end = cities[endIdx];
-                 
-                 return (
-                   <g key={`conn-${i}`}>
-                     {/* Static Background Line */}
-                     <line
-                        x1={start.x}
-                        y1={start.y}
-                        x2={end.x}
-                        y2={end.y}
-                        stroke="currentColor"
-                        strokeWidth="0.1"
-                        className="text-white/10"
-                     />
-                     
-                     {/* Animated Flowing Line */}
-                     <motion.line
-                        x1={start.x}
-                        y1={start.y}
-                        x2={end.x}
-                        y2={end.y}
-                        stroke="hsl(215 100% 50%)"
-                        strokeWidth="0.15"
-                        strokeDasharray="1 1"
-                        initial={{ strokeDashoffset: 0 }}
-                        animate={{ strokeDashoffset: -20 }}
-                        transition={{ duration: 2 + (i % 3), repeat: Infinity, ease: "linear" }}
-                        className="opacity-60"
-                     />
-                   </g>
-                 )
-              })}
+                <defs>
+                  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+                    <feMerge>
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="hsl(215 100% 50%)" stopOpacity="0.3" />
+                    <stop offset="50%" stopColor="hsl(215 100% 60%)" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="hsl(215 100% 50%)" stopOpacity="0.3" />
+                  </linearGradient>
+                </defs>
 
-              {/* Cities */}
-              {cities.map((city, index) => (
-                <g
-                  key={city.name}
-                  className="group"
-                >
-                  <circle
-                    cx={city.x}
-                    cy={city.y}
-                    r="1"
-                    className="fill-background stroke-primary stroke-[0.3]"
-                  />
-                  {/* Pulse Effect */}
-                  <circle
-                    cx={city.x}
-                    cy={city.y}
-                    r="3"
-                    className="fill-primary/10 animate-pulse"
-                  />
-                  
-                  {/* Permanent Label */}
-                  <text
-                    x={city.x} 
-                    y={city.y - 3} 
-                    fontSize="2.5"
-                    fontWeight="bold"
-                    fill="white"
-                    textAnchor="middle"
-                    className="font-display uppercase tracking-wider opacity-100 drop-shadow-md"
-                  >
-                    {city.name}
-                  </text>
+                <path
+                  d="M 15 75 L 20 65 L 18 55 L 25 50 L 30 45 L 35 35 L 45 15 L 55 12 L 65 15 L 75 15 L 85 20 L 92 30 L 95 50 L 90 60 L 85 65 L 75 75 L 75 85 L 65 88 L 50 85 L 40 80 L 30 75 L 20 80 L 15 75 Z"
+                  fill="rgba(59, 130, 246, 0.05)"
+                  stroke="rgba(59, 130, 246, 0.3)"
+                  strokeWidth="0.3"
+                />
+
+                <g stroke="rgba(59, 130, 246, 0.1)" strokeWidth="0.08">
+                  <path d="M 30 45 L 30 75" />
+                  <path d="M 30 60 L 60 60" />
+                  <path d="M 60 40 L 60 70" />
+                  <path d="M 40 30 Q 55 40 70 30" fill="none" />
+                  <path d="M 40 70 Q 55 60 70 70" fill="none" />
                 </g>
-              ))}
-            </svg>
+                
+                {connections.map(([startIdx, endIdx], i) => {
+                  const start = cities[startIdx];
+                  const end = cities[endIdx];
+                  const isActive = activeTrucks.includes(i);
+                  
+                  return (
+                    <g key={`conn-${i}`}>
+                      <line
+                        x1={start.x}
+                        y1={start.y}
+                        x2={end.x}
+                        y2={end.y}
+                        stroke="rgba(255,255,255,0.08)"
+                        strokeWidth="0.15"
+                      />
+                      
+                      {isActive && (
+                        <>
+                          <motion.line
+                            x1={start.x}
+                            y1={start.y}
+                            x2={end.x}
+                            y2={end.y}
+                            stroke="url(#routeGradient)"
+                            strokeWidth="0.4"
+                            filter="url(#glow)"
+                            initial={{ pathLength: 0, opacity: 0 }}
+                            animate={{ pathLength: 1, opacity: 1 }}
+                            transition={{ duration: 0.5 }}
+                          />
+                          
+                          <motion.g
+                            initial={{ offsetDistance: "0%" }}
+                            animate={{ offsetDistance: "100%" }}
+                            transition={{ duration: 4, ease: "linear", repeat: Infinity }}
+                          >
+                            <motion.circle
+                              r="1.2"
+                              fill="hsl(215 100% 50%)"
+                              filter="url(#glow)"
+                              initial={{ cx: start.x, cy: start.y }}
+                              animate={{ cx: end.x, cy: end.y }}
+                              transition={{ duration: 4, ease: "linear", repeat: Infinity }}
+                            />
+                          </motion.g>
+                        </>
+                      )}
+                    </g>
+                  );
+                })}
+
+                {cities.map((city, index) => (
+                  <g
+                    key={city.name}
+                    className="cursor-pointer"
+                    onMouseEnter={() => setHoveredCity(city.name)}
+                    onMouseLeave={() => setHoveredCity(null)}
+                  >
+                    {city.isHub && (
+                      <motion.circle
+                        cx={city.x}
+                        cy={city.y}
+                        r="4"
+                        fill="none"
+                        stroke="hsl(215 100% 50%)"
+                        strokeWidth="0.1"
+                        initial={{ scale: 1, opacity: 0.3 }}
+                        animate={{ scale: 1.5, opacity: 0 }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                    )}
+
+                    <circle
+                      cx={city.x}
+                      cy={city.y}
+                      r={city.isHub ? "2" : "1.2"}
+                      fill={city.isHub ? "hsl(215 100% 50%)" : "white"}
+                      className="drop-shadow-lg"
+                      filter="url(#glow)"
+                    />
+
+                    {city.isHub && (
+                      <circle
+                        cx={city.x}
+                        cy={city.y}
+                        r="0.8"
+                        fill="white"
+                      />
+                    )}
+
+                    <text
+                      x={city.x}
+                      y={city.y - (city.isHub ? 4 : 3)}
+                      fontSize={city.isHub ? "2.8" : "2.2"}
+                      fontWeight="bold"
+                      fill="white"
+                      textAnchor="middle"
+                      className="font-display uppercase tracking-wider"
+                      style={{ textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}
+                    >
+                      {city.name}
+                    </text>
+
+                    {city.activeJobs > 0 && (
+                      <g>
+                        <circle
+                          cx={city.x + 3}
+                          cy={city.y - 2}
+                          r="1.5"
+                          fill="hsl(142 76% 36%)"
+                          className="animate-pulse"
+                        />
+                        <text
+                          x={city.x + 3}
+                          y={city.y - 1.5}
+                          fontSize="1.5"
+                          fontWeight="bold"
+                          fill="white"
+                          textAnchor="middle"
+                        >
+                          {city.activeJobs}
+                        </text>
+                      </g>
+                    )}
+
+                    <AnimatePresence>
+                      {hoveredCity === city.name && (
+                        <motion.g
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 5 }}
+                        >
+                          <rect
+                            x={city.x - 12}
+                            y={city.y + 4}
+                            width="24"
+                            height="8"
+                            rx="1"
+                            fill="rgba(0,0,0,0.8)"
+                            stroke="hsl(215 100% 50%)"
+                            strokeWidth="0.2"
+                          />
+                          <text
+                            x={city.x}
+                            y={city.y + 8.5}
+                            fontSize="1.8"
+                            fill="white"
+                            textAnchor="middle"
+                          >
+                            {city.activeJobs} aktif iş
+                          </text>
+                        </motion.g>
+                      )}
+                    </AnimatePresence>
+                  </g>
+                ))}
+              </svg>
+
+              <div className="absolute bottom-2 left-2 md:bottom-4 md:left-4 flex items-center gap-4 text-xs text-white/50">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-primary" />
+                  <span>Ana Merkez</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-white" />
+                  <span>Hizmet Noktası</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span>Aktif</span>
+                </div>
+              </div>
+
+              <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4">
+                <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/10">
+                  <CheckCircle className="w-3 h-3 text-green-500" />
+                  <span className="text-xs text-white/70">Tüm İsviçre'de Hizmet</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white/5 border border-white/10 rounded-xl p-5 flex items-center gap-4 hover:bg-white/10 transition-colors"
+            >
+              <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center">
+                <Truck className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <div className="text-white font-bold">Express Teslimat</div>
+                <div className="text-white/50 text-sm">Aynı gün hizmet</div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-white/5 border border-white/10 rounded-xl p-5 flex items-center gap-4 hover:bg-white/10 transition-colors"
+            >
+              <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
+                <Package className="w-6 h-6 text-green-500" />
+              </div>
+              <div>
+                <div className="text-white font-bold">Profesyonel Paketleme</div>
+                <div className="text-white/50 text-sm">Özel koruma</div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-white/5 border border-white/10 rounded-xl p-5 flex items-center gap-4 hover:bg-white/10 transition-colors"
+            >
+              <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                <Star className="w-6 h-6 text-purple-500" />
+              </div>
+              <div>
+                <div className="text-white font-bold">Premium Hizmet</div>
+                <div className="text-white/50 text-sm">VIP taşınma</div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
