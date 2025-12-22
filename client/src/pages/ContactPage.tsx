@@ -59,13 +59,40 @@ export default function ContactPage() {
     setStep((s) => Math.max(s - 1, 1));
   };
 
-  const handleFinalSubmit = () => {
-    toast({
-      title: "Premium Quote Request Received",
-      description: `Thank you ${formData.firstName || 'Customer'}. Your detailed request ID is #QM-${Math.floor(Math.random() * 10000)}. We are analyzing your logistics now.`,
-      duration: 5000,
-    });
-    console.log("Full Submission:", formData);
+  const handleFinalSubmit = async () => {
+    try {
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Premium Quote Request Received",
+          description: `Thank you ${formData.firstName || 'Customer'}. Your detailed request ID is ${result.quoteId}. Check your email for confirmation.`,
+          duration: 7000,
+        });
+      } else {
+        toast({
+          title: "Submission Failed",
+          description: result.message || "Please try again or contact us directly.",
+          variant: "destructive",
+          duration: 5000,
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Network error. Please check your connection and try again.",
+        variant: "destructive",
+        duration: 5000,
+      });
+    }
   };
 
   return (
