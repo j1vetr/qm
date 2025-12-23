@@ -39,12 +39,12 @@ const quoteFormSchema = z.object({
 
 // Configure SMTP transporter
 const transporter = nodemailer.createTransport({
-  host: "mail.toov.com.tr",
-  port: 587,
+  host: process.env.SMTP_HOST || "mail.toov.com.tr",
+  port: parseInt(process.env.SMTP_PORT || "587"),
   secure: false,
   auth: {
-    user: "no-reply@toov.com.tr",
-    pass: "Toov1234@@NoRply",
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
   },
 });
 
