@@ -113,7 +113,7 @@ export default function SwissMap() {
 
         <div className="relative">
           <div className="bg-gradient-to-b from-white/5 to-transparent rounded-2xl border border-white/10 p-4 md:p-12 mx-auto max-w-full overflow-hidden">
-            <div className="relative aspect-[4/3] md:aspect-[16/9] min-h-[350px] md:min-h-[600px] w-full flex items-center justify-center">
+            <div className="relative aspect-square md:aspect-[16/9] min-h-[300px] max-h-[70vh] md:min-h-[600px] md:max-h-none w-full flex items-center justify-center">
               <svg
                 viewBox="0 0 100 100"
                 className="w-full h-full max-w-full"
