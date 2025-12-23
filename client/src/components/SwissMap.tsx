@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Truck, Package, Clock, Shield, MapPin, Users, Star, CheckCircle } from "lucide-react";
+import { Truck, Package, Clock, Shield, MapPin, Users, Star } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 
 const cities = [
@@ -136,8 +136,8 @@ export default function SwissMap() {
             </motion.div>
           </div>
 
-          <div className="bg-gradient-to-b from-white/5 to-transparent rounded-2xl border border-white/10 p-4 md:p-8">
-            <div className="relative aspect-[16/9] md:aspect-[21/9]">
+          <div className="bg-gradient-to-b from-white/5 to-transparent rounded-2xl border border-white/10 p-6 md:p-12">
+            <div className="relative aspect-[4/3] md:aspect-[16/9] min-h-[400px] md:min-h-[600px]">
               <svg
                 viewBox="0 0 100 100"
                 className="w-full h-full"
@@ -346,12 +346,6 @@ export default function SwissMap() {
                 </div>
               </div>
 
-              <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4">
-                <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/10">
-                  <CheckCircle className="w-3 h-3 text-green-500" />
-                  <span className="text-xs text-white/70">{dict.home.map_labels.all_switzerland}</span>
-                </div>
-              </div>
             </div>
           </div>
 
