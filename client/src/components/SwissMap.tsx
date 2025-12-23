@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Truck, Package, Clock, Shield, MapPin, Users, Star } from "lucide-react";
+import { Truck, Package, Clock, MapPin, Users, Star } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 
 const cities = [
@@ -112,30 +112,6 @@ export default function SwissMap() {
         </div>
 
         <div className="relative">
-          <div className="absolute -top-4 left-4 md:left-8 z-20">
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-green-500/20 border border-green-500/50 rounded-lg px-4 py-2 flex items-center gap-2"
-            >
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-green-400 text-sm font-medium">31 {dict.home.map_labels.active_moves}</span>
-            </motion.div>
-          </div>
-
-          <div className="absolute -top-4 right-4 md:right-8 z-20">
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-primary/20 border border-primary/50 rounded-lg px-4 py-2 flex items-center gap-2"
-            >
-              <Shield className="w-4 h-4 text-primary" />
-              <span className="text-primary text-sm font-medium">{dict.home.map_labels.fully_insured}</span>
-            </motion.div>
-          </div>
-
           <div className="bg-gradient-to-b from-white/5 to-transparent rounded-2xl border border-white/10 p-4 md:p-12 mx-auto max-w-full overflow-hidden">
             <div className="relative aspect-[4/3] md:aspect-[16/9] min-h-[350px] md:min-h-[600px] w-full flex items-center justify-center">
               <svg
