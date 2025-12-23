@@ -190,7 +190,7 @@ export async function registerRoutes(
       // Send email to admin
       await transporter.sendMail({
         from: '"QuickMove Quote System" <no-reply@toov.com.tr>',
-        to: "admin@quickmove.ch",
+        to: "info@quickmove.ch",
         subject: `New Quote Request ${quoteId} - ${formData.firstName} ${formData.lastName}`,
         html: adminEmailHtml,
       });
