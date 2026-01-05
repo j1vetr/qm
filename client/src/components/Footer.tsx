@@ -2,7 +2,7 @@ import { useLanguage } from "@/lib/i18n";
 import logo from "@assets/Design_1765834372701.png";
 import logoLight from "@assets/designlogo_1765837098234.png";
 import { Link } from "wouter";
-import { Facebook, Instagram, Linkedin, Twitter, Heart } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import { useTheme } from "./theme-provider";
 
 export default function Footer() {
@@ -91,16 +91,6 @@ export default function Footer() {
           <p className="text-muted-foreground font-light tracking-wide">
             {dict.footer.copyright}
           </p>
-          
-          <a 
-            href="https://toov.com.tr" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors bg-foreground/5 px-4 py-2 rounded-full hover:bg-foreground/10"
-          >
-            <span className="font-medium">Developer by TOOV</span>
-            <Heart className="w-3 h-3 text-primary fill-primary animate-pulse" />
-          </a>
         </div>
       </div>
     </footer>
